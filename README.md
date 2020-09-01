@@ -1,37 +1,26 @@
-## Welcome to GitHub Pages
+## Welcome to MAT
 
-You can use the [editor on GitHub](https://github.com/koszulordie/mat/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Find content relevant to the MAT course of the [Masters in Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Overview
 
-### Markdown
+The course will be run in fully remote and partially asynch mode. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+For the asynch part, this means that students will be responsible to watch lecture content elsewhere developing the grounds for each topic. 
 
-```markdown
-Syntax highlighted code block
+We will then meet online at scheduled times to fulfill a few different activities:
 
-# Header 1
-## Header 2
-### Header 3
+- Wrap up main take-homes from asynch lectures
+- Q&A
+- Solve exemplary exercises
+- Run practical tutorials
 
-- Bulleted
-- List
+### Online sessions
 
-1. Numbered
-2. List
+Each online session has a required asynch lecture. 
 
-**Bold** and _Italic_ and `Code` text
+Find the session schedule alongside the topics that will be covered and the tasks required prior to the session.
 
-[Link](url) and ![Image](src)
-```
+### Evaluation
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/koszulordie/mat/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Here I will describe how the work of the students will be evaluated

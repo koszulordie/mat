@@ -1,0 +1,10 @@
+# Running website locally with jekyll
+
+1. Install ruby
+
+$ sudo apt-get install ruby-all-dev
+
+2. Follow instructions here:
+
+https://docs.github.com/en/enterprise/2.14/user/articles/setting-up-your-github-pages-site-locally-with-jekyll
+

@@ -1,3 +1,5 @@
+![mat logo](images/logo.png)
+
 ## Welcome to MAT
 
 Find content relevant to the MAT course of the [Masters in Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics).

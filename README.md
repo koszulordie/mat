@@ -1,4 +1,4 @@
-![mat logo](images/logo.png)
+![mat logo](images/logo-mat.png)
 
 ## Welcome to MAT
 

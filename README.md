@@ -1,6 +1,8 @@
-![mat logo](images/logo-mat.png)
+<p align="center">
+  <img src="images/logo-mat.png" alt="MAT's logo"/>
+</p>
 
-## Welcome to MAT
+## Welcome to **mat**
 
 Find content relevant to the MAT course of the [Masters in Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics).
 

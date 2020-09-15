@@ -9,7 +9,4 @@ future: true
 theme: jekyll-theme-cayman
 # theme: Minima
 show_downloads: "true"
-collections:
-  tags:
-    output: true
-    permalink: tags/:path/
+permalink: /mat/:title

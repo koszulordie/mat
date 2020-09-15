@@ -2,6 +2,7 @@ author: Ferran Muiños
 email: ferran.muinos@irbbarcelona.org
 description: "mat course"
 twitter_username: fmuinos
+baseurl: /mat
 github_username: koszulordie
 show_excerpts: true
 future: true

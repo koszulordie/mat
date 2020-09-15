@@ -46,7 +46,7 @@ Ramon Massoni will act as invited speaker and teaching assistant in the linear a
 <ul>
   {% for post in sorted %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
 </ul>

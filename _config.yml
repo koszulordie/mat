@@ -9,4 +9,3 @@ future: true
 theme: jekyll-theme-cayman
 # theme: Minima
 show_downloads: "true"
-permalink: /mat/:path

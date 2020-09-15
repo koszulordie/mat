@@ -8,3 +8,6 @@ $ sudo apt-get install ruby-all-dev
 
 https://docs.github.com/en/enterprise/2.14/user/articles/setting-up-your-github-pages-site-locally-with-jekyll
 
+3. Run static website locally
+
+bundle exec jekyll serve

@@ -17,44 +17,48 @@
 
 # Overview
 
-This is the supporting website for the "Elements of Mathematics" course. 
-
-This course is run in **remote-online**, **partially-asynch** mode.
-
-Interaction between the teachers and students will be telematic. 
-
-Students will be responsible to watch/read lecture content elsewhere before each scheduled session. 
-Then we will meet online at scheduled times to fulfill a few different activities:
-
-1. Wrap up main take-homes from lecture content
-2. Q&A
-3. Solve exercises
-4. Run tutorials
+Welcome to the supporting website for the "Elements of Mathematics" a.k.a. "mat" course. This course is run in remote-online, 
+partially-asynch mode, which means that the interaction between the teachers and the students will be telematic, and part 
+of the content supplied to the students will not be delivered during the scheduled sessions. For the most part, the 
+students should watch/read and process lecture content before meeting online.
 
 
 # Scheduled sessions
 
-Each session will cover one specific topic. Here is a [calendar of online sessions](https://some-random-link.org), 
-each with its own description, duties required before the session and exercises for practice.
+Each session will cover a series of related topics. Here is the [calendar]({{ site.baseurl }}{% link docs/calendar.pdf %})
+of the sessions. The content for each session is available in each session's page (links in the top), including 
+the syllabus, required content, link to the telematic room and collection of exercises for practice.
+
+The sessions will serve several purposes:
+
+1. Summarizing main take-homes from lecture content
+2. Solve exercises
+3. Q&A and discussion
+4. Run tutorials
 
 
 # Telematic room
 
-[Link to the telematic facility](https://some-random-link.org)
+We will be using the [google-meet](https://meet.google.com/) platform for meeting online. Every session will have a 
+possibly different link that will be posted in the respective session page.
 
 
 # Evaluation
 
 Proof of work will come in three flavours:
 
-1. Exercise assignments proposed throughout the course.
-2. In-depth reading of a computational biology paper.
-3. Final multiple-choice test.
+1. Specific assignments proposed along the course.
+2. In-depth processing of a [computational biology paper](https://random-computational-biology-papers.org).
+3. Final test.
 
+Tentative weighting for the score: 20% (1) + 30% (2) + 50% (3).
 
 # Teachers
 
-Ferran Muiños is the course coordinator.
-Ramon Massoni will act as invited speaker and teaching assistant in the linear algebra tutorials.
+Ferran Muiños is the course coordinator. You can learn a bit more about his background and credentials 
+[here](https://www.upf.edu/web/bioinformatics/entry/-/-/ferran_muinos-irbbarcelona_org/adscripcion/ferran-mui%C3%B1os).
 
+Ramon Massoni will act as invited speaker and teaching assistant for the three linear algebra tutorials. 
+You can find more about his work on his [github repo](https://github.com/massonix) and on [twitter](https://twitter.com/rmassonix).
 
+We were both students of this master back in the old good days.

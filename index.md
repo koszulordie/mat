@@ -5,7 +5,7 @@
 
 # Welcome session 
 
-Wednesday 14 October at 16:00 in this link: [meet.google.com/yee-hwvw-dgw](meet.google.com/yee-hwvw-dgw)
+Wednesday 14 October at 16:00 in this link: [meet.google.com/yee-hwvw-dgw](https://meet.google.com/yee-hwvw-dgw)
 
 
 # Online sessions scheduled

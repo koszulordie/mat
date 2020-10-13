@@ -3,7 +3,12 @@
 </p>
 
 
-# Sessions
+# Welcome session 
+
+Wednesday 14 October at 16:00 in this link: [meet.google.com/yee-hwvw-dgw](meet.google.com/yee-hwvw-dgw)
+
+
+# Online sessions scheduled
 
 {% assign sorted = site.posts | sort: 'date' %}
 <ul>
@@ -23,7 +28,7 @@ of the content supplied to the students will not be delivered during the schedul
 students should watch/read and process lecture content before meeting online.
 
 
-# Scheduled sessions
+# Online sessions
 
 Each session will cover a series of related topics. Here is the [calendar]({{ site.baseurl }}{% link docs/calendar.pdf %})
 of the sessions. The content for each session is available in each session's page (links in the top), including 

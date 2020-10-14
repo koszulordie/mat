@@ -76,7 +76,7 @@ We were both students of this master back in the old good days.
 
 Gilbert Strang. URL: [http://math.mit.edu/~gs/linearalgebra](http://math.mit.edu/~gs/linearalgebra)
 
-**3Brown1Blue YouTube Channel.**
+**3Blue1Brown YouTube Channel.**
 
 Grant Sanderson. URL: [https://www.youtube.com/c/3blue1brown](https://www.youtube.com/c/3blue1brown)
 

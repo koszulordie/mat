@@ -67,3 +67,33 @@ Ramon Massoni will act as invited speaker and teaching assistant for the three l
 You can find more about his work on his [github repo](https://github.com/massonix) and on [twitter](https://twitter.com/rmassonix).
 
 We were both students of this master back in the old good days.
+
+# References
+
+## Specific for this course
+
+**Introduction to Linear Algebra.**
+
+Gilbert Strang. URL: [http://math.mit.edu/~gs/linearalgebra](http://math.mit.edu/~gs/linearalgebra)
+
+**3Brown1Blue YouTube Channel.**
+
+Grant Sanderson. URL: [https://www.youtube.com/c/3blue1brown](https://www.youtube.com/c/3blue1brown)
+
+**Elementary Classical Analysis.** 
+
+Jerrold E. Marsden, Michael J. Hoffman. W. H. Freeman, 1993.
+
+**Infinite Powers: How Calculus Reveals the Secrets of the Universe.**
+
+Steven Strogatz. Houghton Mifflin Harcourt, 2019.
+
+## Off-topic
+
+**Concrete Mathematics: A Foundation for Computer Science.**
+
+Ronald L. Graham, Donald E. Knuth, Oren Patashnik. Addison-Wesley, 1994.
+
+**The Art of Computer Programming (Volume 1): Fundamental Algorithms.**
+
+Donald E. Knuth. Addison-Wesley, 1968.

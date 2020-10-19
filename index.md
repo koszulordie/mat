@@ -5,7 +5,7 @@
 
 # Next session 
 
-Let's meet in this link: [meet.google.com/yee-hwvw-dgw](https://meet.google.com/yee-hwvw-dgw)
+Let's meet in this link: [meet.google.com/wqc-cwyk-ogm](https://meet.google.com/wqc-cwyk-ogm)
 
 
 # Online sessions scheduled

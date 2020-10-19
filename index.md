@@ -3,9 +3,9 @@
 </p>
 
 
-# Welcome session 
+# Next session 
 
-Wednesday 14 October at 16:00 in this link: [meet.google.com/yee-hwvw-dgw](https://meet.google.com/yee-hwvw-dgw)
+Let's meet in this link: [meet.google.com/yee-hwvw-dgw](https://meet.google.com/yee-hwvw-dgw)
 
 
 # Online sessions scheduled

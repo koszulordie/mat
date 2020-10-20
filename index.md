@@ -5,7 +5,7 @@
 
 # Next session 
 
-Let's meet in this link: [meet.google.com/wqc-cwyk-ogm](https://meet.google.com/wqc-cwyk-ogm)
+Let's meet in the Collaborate session posted in the Aula Global MAT course page.
 
 
 # Online sessions scheduled
@@ -44,8 +44,8 @@ The sessions will serve several purposes:
 
 # Telematic room
 
-We will be using the [google-meet](https://meet.google.com/) platform for meeting online. Every session will have a 
-possibly different link that will be posted in the respective session page.
+After some nasty practical issues, we will be using the [collaborate](https://www.blackboard.com/teaching-learning/collaboration-web-conferencing/blackboard-collaborate) 
+web conferencing platform instead of **google-meet**. Every session will have a possibly different link that will be posted in the Aula Global.
 
 
 # Evaluation

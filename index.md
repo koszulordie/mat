@@ -52,11 +52,12 @@ web conferencing platform instead of **google-meet**. Every session will have a 
 
 Proof of work will come in three flavours:
 
-1. Specific assignments proposed along the course.
-2. In-depth processing of a [computational biology paper](https://random-computational-biology-papers.org).
-3. Final test.
+1. Specific assignment proposed during the course.
+2. [Computational biology paper through the lens of math]({{ site.baseurl }}{% link papers/papers.md %}).
+3. <s>Final test</s>
 
-Tentative weighting for the score: 20% (1) + 30% (2) + 50% (3).
+Tentative weighting for the score: 30% (1) + 70% (2).
+
 
 # Teachers
 

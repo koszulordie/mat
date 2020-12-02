@@ -49,11 +49,13 @@ This session will focus on two common themes in computational biology:
 - Classification of critical points
 - Quadratic approximation
 
-## R
+## R skills
 
-- More examples of graphical tools and plots
-- Defining functions
-- Computing the gradient and the hessian
+- Review linear algebra tools
+- More examples of plots and graphical tools
+- Defining functions in R
+- Computing the gradient numerically
+- Solving numerically arbitrary systems of equations
 
 
 # Regression
@@ -116,11 +118,10 @@ produced by the random process encoded by the PMF or PDF $f_{\theta}$ (where $\t
 represents a parameter that govern the distribution) the likelihood 
 of the data is given by:
 
-$$\mathcal{L}(\theta) = f_{\theta}(y_1)f_{\theta}(y_2)\ldots f_{\theta}(y_n)$$
+$$\mathcal{L}(\theta) = f_{\theta}(y_1)f_{\theta}(y_2)\ldots f_{\theta}(y_n) = \prod_{i=1}^n f_\theta(y_i)$$
 We will be looking for the $\hat{\theta}$ that gives the maximum $\mathcal{L}(Y,\theta)$. 
 In a more compact notation:
 $$\hat{\theta} = \textrm{argmax}_{\theta} \; \mathcal{L}(\theta)$$
-
 ### Likelihood: with covariates
 
 But what if we want to make the draw dependent on a set of covariates, the 
@@ -141,16 +142,18 @@ draw each $y_i$ (say $\theta_i$) depends on the covariate of this sample
 in a linear fashion: $\theta_i = \alpha x_i + \beta$. Now we want to find
 $\hat\alpha$ and $\hat\beta$ such that:
 
-$$ \mathcal{L} (\alpha, \beta) = f_{\theta_1}(y_1) f_{\theta_2}(y_2) \ldots f_{\theta_n}(y_n)$$
+$$ \mathcal{L} (\alpha, \beta) = f_{\theta_1}(y_1) f_{\theta_2}(y_2) \ldots f_{\theta_n}(y_n) = \prod_{i=1}^n f_{\theta_i}(y_i)$$
 $$(\hat\alpha, \hat\beta) = \textrm{argmax}_{(\alpha, \beta)} \; \mathcal{L}(\alpha, \beta) $$
 
 # Linear Regression
 
-To illustrate the many faces of linear regression, we will resort once more to 
+To illustrate linear regression from different angles, we will resort once more to 
 the [gapminder dataset](https://cran.r-project.org/web/packages/gapminder/README.html).
 
-We want to understand the statistical association between the GDP per capita 
-and life expectancy across different countries. Let's have a look at the year 2007.
+This time we want to understand the statistical association between the GDP per capita 
+and life expectancy across different countries for the year 2007.
+
+Let's retrieve and preprocess our data:
 
 
 ```{r}
@@ -162,9 +165,14 @@ gapminder_sub$log10_gdpPercap <- log10(gapminder_sub$gdpPercap)
 head(gapminder_sub)
 ```
 
-## Solution 1: orthogonal projection onto C(A)
+Recall that our goal is to compute a vector $\hat\beta=(\hat\beta_1, \hat\beta_2)$
+such that if $A\in\mathbb{R}^{n\times m}$ is the matrix of covariate values 
+across samples and $b\in\mathbb{R}^n$ is the vector of independent terms, 
+$A\beta$ is a reasonable representation of what has been observed as $b$.
 
-Define the matrix of coefficients $A$ and the independent $b$ term as:
+## Solution 1: orthogonal projection
+
+We define the matrix of coefficients $A$ and the independent term $b$.
 
 ```{r}
 num_rows <- nrow(gapminder_sub)
@@ -178,14 +186,17 @@ A <- matrix(
 b <- as.matrix(gapminder_sub$lifeExp)
 ```
 
-Notice that the $A$ already incorporates a column of ones that renders the 
+Notice that the $A$ already incorporates a column of ones that renders an 
 intercept after multiplying by the unknown vector of linear coefficients. 
 
 We already know (and understand the geometrical meaning behind it, see [tutorial 
 on orthogonal projections](https://koszulordie.github.io/mat/2020/11/04/session07.html))
-that the solution $\hat{x}$ can be computed as follows:
+at least one sensible way to proceed is to compute the solution $\hat{x}$ 
+can be computed with the following recipe:
 
 $$\hat{x} = (A^tA)^{-1} A^t b.$$
+
+Let's do the computation:
 
 ```{r}
 library(matlib)
@@ -195,14 +206,25 @@ xhat
 
 ## Solution 2: GLM function in R
 
-Probably the most compact way to proceed:
+The most compact, straightforward (and lazy) way to solve this problem with R 
+is by means of the functions available in R for GLM regression:
 
 ```{r}
-glm(lifeExp ~ log10_gdpPercap + 1, family=gaussian, gapminder_sub)
+glm(lifeExp ~ log10_gdpPercap + 1, family=gaussian, data=gapminder_sub)
 ```
 
+There are already two remarkable things in this short expression:
+- the formula "lifeExp ~ log10_gdpPercap + 1" employed as first argument
+- the "family=gaussian" argument
 
 ## Solution 3: optimization
+
+Let's frame our problem as an optimization problem, based on maximizing a 
+likelihood function, as described [elsewhere](#regression).
+
+### Objective function
+
+Let's define the function that given the parameters
 
 ```{r}
 squared_error <- function(x){
@@ -210,10 +232,58 @@ squared_error <- function(x){
   C <- A%*%v - b;
   t(C) %*% C
 }
+
+# test the function at some point
+a <- c(0,1)
+squared_error(a)
+```
+**Question:** But hang on a second... what does the squared error 
+(a.k.a. squared residuals) function has to do with the previous 
+regression setting in the first place?
+
+### Detour on regression with the Gaussian family
+
+The squared error arises naturally from the expression of the likelihood,
+where the distributions employed are Gaussian:
+
+$$f_{\mu, \sigma}(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2} \left(\frac{x-\mu}{\sigma}\right)^2}$$
+and the linear dependence with the covariates is incorporated to the $\mu$:
+
+$$\mu_i = A_i\beta$$
+with $A_i$ represents the $i$-th row of $A$, i.e., the covariate values
+corresponding to the $i$-th sample.
+
+Let's compute the likelihood function:
+
+$$\mathcal{L}(\beta) = \prod_{i=1}^n f_{\mu_i, \sigma}(y_i) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2} \left(\frac{y_i-\mu_i}{\sigma}\right)^2}$$
+Let's compute the log version:
+$$
+\begin{align}
+\log\mathcal{L}(\beta) & = & -n\log\sqrt{2\pi\sigma^2} - \frac{1}{2\sigma^2}\sum_{i=1}^n (y_i-\mu_i)^2 \\ 
+& \propto & k + \sum_{i=1}^n(y_i-A_i\beta)^2 = k + (A\beta - y)^t(A\beta - y)
+\end{align}
+$$
+where $k$ is a constant terms which does not depend on $\beta$.
+
+The only non-constant part of the expression involves the squared error function. 
+The log-likelihood will be maximized if the squared error function is minimized.
+
+### Gradient
+
+For a given function, there are packages that allow to compute their gradient at
+some point numerically. For instance:
+
+```{r}
+library(rootSolve)
+x0 <- c(15, 1)  # some example
+grad <- gradient(squared_error, x0)
+grad
 ```
 
+However, interestingly, we can provide a closed form of the gradient 
+of this specific objective function (see [Exercises for Session 13-14](https://koszulordie.github.io/mat/exercises/exercises-session-14.pdf)).
 
-The gradient can be computed exactly (see [Exercises for Session 13-14](https://koszulordie.github.io/mat/exercises/exercises-session-14.pdf)):
+Let's implement it as a function and evaluate in the previously computed "xhat":
 
 ```{r}
 grad_squared_error <- function(x){
@@ -224,17 +294,22 @@ grad_squared_error(xhat)
 squared_error(xhat)
 ```
 
-We can find the root of the gradient function numerically:
+We can use our gradient function implementation to find the root of the gradient 
+numerically:
 
 ```{r}
 library(rootSolve)
 res <- multiroot(grad_squared_error, c(5,5), atol=c(1e-6,1e-6), maxiter=1e4)
 xhat2 <- res$root
-xhat2
-res$f.root
+print(xhat2)
+print(res$f.root)
 ```
 
 ### Graphical representation
+
+To represent graphically the function we have just optimized, it is convenient
+that we set-up a grid of inputs and add a new column with the outputs of our 
+function:
 
 ```{r}
 xs <- seq(10, 20, by=0.05)
@@ -244,6 +319,8 @@ griddf <- expand.grid(alpha=xs, beta=ys)
 griddf$value <- apply(griddf, 1, function(x) {squared_error(x)})
 ```
 
+Let's visualize the function values around "xhat" as a 2D contour plot
+filled with colors:
 
 ```{r}
 se_gg <- griddf %>%
@@ -258,6 +335,7 @@ se_gg <- griddf %>%
 se_gg
 ```
 
+Let's visualize the function using just the 2D level sets:
 
 ```{r}
 se_gg <- griddf %>%
@@ -273,9 +351,25 @@ se_gg
 ```
 
 
+Let's take advantage of our knowledge to compute the Hessian matrix (see also [Exercises for Session 13-14](https://koszulordie.github.io/mat/exercises/exercises-session-14.pdf))
+
 ```{r}
 hessian <- 2 * t(A) %*% A
 hessian
+```
+
+The eigenvalues and eigenvectors of the Hessian tell us about:
+
+- **eigenvalues:** how open/closed the branches of the vertical cross-sections of the graph
+of the function near "xhat" in the directions of the eigenvectors; these vertical 
+cross-sections are all parabolas; and the graph of the function in this specific
+example is known as an [elliptic parabolloid](https://en.wikipedia.org/wiki/Paraboloid#Elliptic_paraboloid).
+
+- **eigenvectors:** orthogonal directions signaling the parabolic cross-sections
+that have max/min branch openness.
+
+
+```{r}
 eigen <- eigen(hessian)
 
 eigenvectors <- eigen$vectors
@@ -285,6 +379,7 @@ eigenvalues <- eigen$values
 eigenvalues
 ```
 
+Let's see where those vectors are sitting in the contour plot.
 
 
 ```{r}
@@ -353,10 +448,20 @@ $$\log\left(\frac{p_i}{1 - p_i}\right) = A_i{\beta}$$
 What the function **glm** does boilds down to computing the parameter $\hat\beta$
 that makes the following likelihood maximum:
 
-$$\mathcal{L}(\beta) = \prod_{i=1}^n \left\{ y_ip_i + (1 - y_i)(1 - p_i)\right\} = \prod_{i=1}^n \left\{ y_i \frac{e^{A_i{\bf \beta}}}{1 + e^{A_i{\bf \beta}}} + (1 - y_i)(1 - \frac{e^{A_i{\bf \beta}}}{1 + e^{A_i{\bf \beta}}})\right\}$$
+$$
+\begin{align}
+\mathcal{L}(\beta) & = & \prod_{i=1}^n \left\{ y_ip_i + (1 - y_i)(1 - p_i)\right\} \\
+& = & \prod_{i=1}^n \left\{ y_i \frac{e^{A_i{\bf \beta}}}{1 + e^{A_i{\bf \beta}}} + (1 - y_i)(1 - \frac{e^{A_i{\bf \beta}}}{1 + e^{A_i{\bf \beta}}})\right\}
+\end{align}
+$$
 or its log version
 
-$$\log\mathcal{L}(\beta) = \sum_{i=1}^n \log\left\{ y_ip_i + (1 - y_i)(1 - p_i)\right\} = \sum_{i=1}^n y_i\log p_i + (1 - y_i)\log(1 - p_i).$$
+$$
+\begin{align}
+\log\mathcal{L}(\beta) & = & \sum_{i=1}^n \log\left\{ y_ip_i + (1 - y_i)(1 - p_i)\right\} \\
+& = & \sum_{i=1}^n y_i\log p_i + (1 - y_i)\log(1 - p_i).
+\end{align}
+$$
 
 # Poisson regression
 
@@ -403,7 +508,12 @@ $\hat\beta$ that makes the following likelihood maximum:
 $$\mathcal{L}(\beta) = \prod_{i=1}^n \frac{\lambda^{n_i}_i}{n_i!}e^{-\lambda_i}$$
 or its log version
 
-$$\log\mathcal{L}(\beta) = \sum_{i=1}^n -\lambda_i + n_i\log\lambda_i - {n_i}! = k + \sum_{i=1}^n -e^{A_i\beta} + n_i A_i\beta$$
+$$
+\begin{align}
+\log\mathcal{L}(\beta) &=& \sum_{i=1}^n -\lambda_i + n_i\log\lambda_i - {n_i}! \\
+&=& k + \sum_{i=1}^n -e^{A_i\beta} + n_i A_i\beta
+\end{align}
+$$
 where $k$ is a constant terms which does not depend on $\beta$.
 
 ```{r}

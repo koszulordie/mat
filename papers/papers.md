@@ -17,13 +17,12 @@ tags:
     * They are quite heterogeneous in terms of mathematical scope and accessibility. Please, mind to correctly tune the best balance between your interest 
 in the topic and the mathematical difficulty.
 
-    * You can propose papers from outside of the list. But then, please, agree with Ferran before moving forwards.
+    * You can propose papers from outside of the list. But then, please, agree with the teacher before moving forwards.
 
 * You will be composing a short article addressed to your peers in which you present a problem that has been worked out by someone else, 
-and provide a well worked out digest of their solution to the problem.
+and provide a digest of their solution to the problem.
 
-* Your main goal is that your readers learn not only about the main findings of the work, but also about the specific ideas 
-playing a role behind the solution. In particular, you will not be shying away from the details.
+* Your main goal is that your readers learn not only about the main findings of the work, but also about the specific ideas playing a role behind the solution. In particular, you will not be shying away from the details.
 
 * In your article you will be answering the following questions:
 
@@ -41,8 +40,9 @@ playing a role behind the solution. In particular, you will not be shying away f
 
     * Have these ideas been tried before in this or a similar context?
 
-* The document should take about 3000-3500 words.
+* The document should take about 2000-2500 words.
 
+* Do not copy stuff verbatim
 
 ## Working groups
 
@@ -61,14 +61,13 @@ playing a role behind the solution. In particular, you will not be shying away f
 
 * Both individual and paired works can reach the maximum score; in particular, co-authors of paired works will get the same score.
 
-* However, the evaluation will be stricter for paired works, in the sense that the overall expected quality will be higher and flaws will penalize more.
+* However, the evaluation will be somewhat stricter for paired works, as the overall expected quality
+ will be higher and flaws will penalize more.
 
 
 ## Evaluation criteria
 
 * Clarity
-
-* Correctness of claims
 
 * Sound content, ability to answer the main questions
 

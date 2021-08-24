@@ -2,13 +2,14 @@
   <img src="images/logo-mat.png" alt="MAT's logo"/>
 </p>
 
+# Overview
 
-# Next session 
+Welcome to the supporting website for the **Elements of Mathematics** course of the [Master in
+ Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics). 
+ 
+ This course is based on remote sessions with some sessions on-site. 
 
-Let's meet in the Collaborate session posted in the Aula Global MAT course page.
-
-
-# Online sessions scheduled
+# Fall 2021 sessions
 
 {% assign sorted = site.posts | sort: 'date' %}
 <ul>
@@ -19,55 +20,50 @@ Let's meet in the Collaborate session posted in the Aula Global MAT course page.
   {% endfor %}
 </ul>
 
+Here is the [time table]({{ site.baseurl }}{% link docs/calendar_fall_2021.pdf %}) for the fall 2021 term.
 
-# Overview
+# Session content
 
-Welcome to the supporting website for the "Elements of Mathematics" a.k.a. "mat" course. This course is run in remote-online, 
-partially-asynch mode, which means that the interaction between the teachers and the students will be telematic, and part 
-of the content supplied to the students will not be delivered during the scheduled sessions. For the most part, the 
-students should watch/read and process lecture content before meeting online.
+Each session will be 2h covering a bunch of related topics. For the most part, the students should watch/read and digest some content before each session.
 
+There will be sessions of two kinds: remote (online) and on-site. In the schedule above we indicate whether the sessions will be remote or on-site. In the full calendar the on-site sessions are the ones with a classroom number is indicated. On-site sessions are not planned to be recorded nor broadcast. 
+ 
+Each session has its own page including the syllabus, the content to be watched/read before the session, links to exercises for practice and supplementary content.
 
-# Online sessions
+## Remote sessions
 
-Each session will cover a series of related topics. Here is the [calendar]({{ site.baseurl }}{% link docs/calendar.pdf %})
-of the sessions. The content for each session is available in each session's page (links in the top), including 
-the syllabus, required content, link to the telematic room and collection of exercises for practice.
+We will be using the [collaborate](https://www.blackboard.com/teaching-learning/collaboration-web-conferencing/blackboard-collaborate) web conferencing platform. The remote session links will be posted in the Aula Global MAT page.
+
+## Sessions aim
 
 The sessions will serve several purposes:
 
-1. Summarizing main take-homes from lecture content
+1. Presenting the main take-homes from lecture content
 2. Solve exercises
 3. Q&A and discussion
 4. Run tutorials
-
-
-# Telematic room
-
-After some nasty practical issues, we will be using the [collaborate](https://www.blackboard.com/teaching-learning/collaboration-web-conferencing/blackboard-collaborate) 
-web conferencing platform instead of **google-meet**. Every session will have a possibly different link that will be posted in the Aula Global.
-
 
 # Evaluation
 
 Proof of work will come in three flavours:
 
-1. Specific assignment proposed during the course.
+1. Midterm homework assignment with exercises.
 2. [Computational biology paper through the lens of math]({{ site.baseurl }}{% link papers/papers.md %}).
-3. <s>Final test</s>
+3. Final test
 
-Tentative weighting for the score: 30% (1) + 70% (2).
+Tentative weighting for the score: 20% (1) + 30% (2) + 50% (3).
 
 
 # Teachers
 
-Ferran Muiños is the course coordinator. You can learn a bit more about his background and credentials 
-[here](https://www.upf.edu/web/bioinformatics/entry/-/-/ferran_muinos-irbbarcelona_org/adscripcion/ferran-mui%C3%B1os).
+Ferran Muiños is the course coordinator. You can learn a bit more about his background by checking his publications in
+ [biomedicine](https
+://pubmed.ncbi.nlm.nih.gov/?term=Mui%C3%B1os+F%5BAuthor%5D&sort=date) and [math](https://zbmath.org/?q=ai%3Amuinos.ferran).
 
 Ramon Massoni will act as invited speaker and teaching assistant for the three linear algebra tutorials. 
 You can find more about his work on his [github repo](https://github.com/massonix) and on [twitter](https://twitter.com/rmassonix).
 
-We were both students of this master back in the old good days.
+We were both students of this master back in the old days.
 
 # References
 

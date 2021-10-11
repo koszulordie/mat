@@ -2,14 +2,12 @@
   <img src="images/logo-mat.png" alt="MAT's logo"/>
 </p>
 
-# Overview
+# Elements of Mathematics (MAT)
 
 Welcome to the supporting website for the **Elements of Mathematics** course of the [Master in
  Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics). 
  
- This course is based on remote sessions with some sessions on-site. 
-
-# Fall 2021 sessions
+# Fall 2021-2022
 
 {% assign sorted = site.posts | sort: 'date' %}
 <ul>
@@ -20,47 +18,47 @@ Welcome to the supporting website for the **Elements of Mathematics** course of 
   {% endfor %}
 </ul>
 
-Here is the [time table]({{ site.baseurl }}{% link docs/calendar_fall_2021.pdf %}) for the fall 2021 term.
+# Timetable
 
-# Session content
+Check the [official timetable](https://gestioacademica.upf.edu/pds/consultaPublica/look%5Bconpub%5DInicioPubHora
+?entradaPublica=true&idiomaPais=ca.ES&centro=804&estudio=8045&PlanDocente=2021) for the fall 2021 term.
 
-Each session will be 2h covering a bunch of related topics. For the most part, the students should watch/read and digest some content before each session.
+# Content
 
-There will be sessions of two kinds: remote (online) and on-site. In the schedule above we indicate whether the sessions will be remote or on-site. In the full calendar the on-site sessions are the ones with a classroom number is indicated. On-site sessions are not planned to be recorded nor broadcast. 
- 
-Each session has its own page including the syllabus, the content to be watched/read before the session, links to exercises for practice and supplementary content.
+Each session has its own page including the syllabus, content to be watched/read before the session (entirely optional but recommended), links to exercises for practice and supplementary content.
 
-## Remote sessions
+Sessions will be ~2h covering a bunch of related topics. To make the most our of each session it would be beneficial to watch/read content supplied before the session takes place.
 
-We will be using the [collaborate](https://www.blackboard.com/teaching-learning/collaboration-web-conferencing/blackboard-collaborate) web conferencing platform. The remote session links will be posted in the Aula Global MAT page.
-
-## Sessions aim
+## Aim
 
 The sessions will serve several purposes:
 
-1. Presenting the main take-homes from lecture content
+1. Present fundamental concepts
 2. Solve exercises
 3. Q&A and discussion
 4. Run tutorials
 
+## Remote sessions
+
+Sessions on **13 and 20 october will be remote**. For remote sessions we will be using the [collaborate](https://www
+.blackboard.com/teaching-learning/collaboration-web-conferencing/blackboard-collaborate) web conferencing platform. The remote session links will be posted in the Aula Global MAT page.
+
 # Evaluation
 
-Proof of work will come in three flavours:
+Evaluation will have three components:
 
-1. Midterm homework assignment with exercises.
-2. [Computational biology paper through the lens of math]({{ site.baseurl }}{% link papers/papers.md %}).
+1. A midterm homework assignment
+2. [Paper digest]({{ site.baseurl }}{% link papers/papers.md %})
 3. Final test
 
-Tentative weighting for the score: 20% (1) + 30% (2) + 50% (3).
-
+Weighting for the score: 20% (1) + 20% (2) + 60% (3).
 
 # Teachers
 
-Ferran Muiños is the course coordinator. You can learn a bit more about his background by checking his publications in
- [biomedicine](https
+**Ferran Muiños** will act as course coordinator. You can learn a bit more about his background by checking his publications in [biomedicine](https
 ://pubmed.ncbi.nlm.nih.gov/?term=Mui%C3%B1os+F%5BAuthor%5D&sort=date) and [math](https://zbmath.org/?q=ai%3Amuinos.ferran).
 
-Ramon Massoni will act as invited speaker and teaching assistant for the three linear algebra tutorials. 
+**Ramon Massoni** will act as invited speaker and teaching assistant for the tutorials. 
 You can find more about his work on his [github repo](https://github.com/massonix) and on [twitter](https://twitter.com/rmassonix).
 
 We were both students of this master back in the old days.
@@ -69,28 +67,28 @@ We were both students of this master back in the old days.
 
 ## Specific for this course
 
-**Introduction to Linear Algebra.**
+**[Introduction to Linear Algebra](http://math.mit.edu/~gs/linearalgebra).**
+Gilbert Strang.
 
-Gilbert Strang. URL: [http://math.mit.edu/~gs/linearalgebra](http://math.mit.edu/~gs/linearalgebra)
+**[3Blue1Brown YouTube Channel](https://www.youtube.com/c/3blue1brown).**
+Grant Sanderson.
 
-**3Blue1Brown YouTube Channel.**
+**[Steve Brunton's YouTube Channel](https://www.youtube.com/channel/UCm5mt-A4w61lknZ9lCsZtBw).**
+Steve Brunton.
 
-Grant Sanderson. URL: [https://www.youtube.com/c/3blue1brown](https://www.youtube.com/c/3blue1brown)
+**[A friendly introduction to linear algebra for Machine Learning](https://www.youtube.com/watch?v=LlKAna21fLE).**
+Tai Danae Bradley. TensorFlow ML Tech Talks.
 
-**Elementary Classical Analysis.** 
-
-Jerrold E. Marsden, Michael J. Hoffman. W. H. Freeman, 1993.
+**[The Art of Linear Algebra](https://github.com/kenjihiranabe/The-Art-of-Linear-Algebra).**
+Kenji Hiranabe.
 
 **Infinite Powers: How Calculus Reveals the Secrets of the Universe.**
-
 Steven Strogatz. Houghton Mifflin Harcourt, 2019.
 
-## Off-topic
+## Miscelanea
 
-**Concrete Mathematics: A Foundation for Computer Science.**
+**[Yann LeCun’s Deep Learning Course at CDS](https://cds.nyu.edu/deep-learning/).**
+Yann LeCun, Alfredo Canziani.
 
-Ronald L. Graham, Donald E. Knuth, Oren Patashnik. Addison-Wesley, 1994.
-
-**The Art of Computer Programming (Volume 1): Fundamental Algorithms.**
-
-Donald E. Knuth. Addison-Wesley, 1968.
+**[Introduction to Linear Algebra for Applied Machine Learning with Python](https://pabloinsente.github.io/intro-linear-algebra).**
+Pablo Cáceres.

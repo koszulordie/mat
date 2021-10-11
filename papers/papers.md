@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Computational biology paper through the lens of math"
+title: "Paper digest"
 tags:
 ---
 

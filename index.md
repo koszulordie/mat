@@ -47,11 +47,10 @@ Sessions on **13 and 20 october will be remote**. For remote sessions we will be
 
 Evaluation will have three components:
 
-1. A midterm homework assignment
-2. [Paper digest]({{ site.baseurl }}{% link papers/papers.md %})
-3. Final test
+1. [Paper digest]({{ site.baseurl }}{% link papers/papers.md %})
+2. Final test
 
-Weighting for the score: 20% (1) + 20% (2) + 60% (3).
+Weighting: 30% (1) + 70% (2)
 
 # Teachers
 

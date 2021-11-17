@@ -40,7 +40,7 @@ and provide a digest of their solution to the problem.
 
     * Have these ideas been tried before in this or a similar context?
 
-* The document should take about 2000-2500 words.
+* The document should take about 1000-1500 words.
 
 * Do not copy stuff verbatim
 
@@ -82,40 +82,43 @@ and provide a digest of their solution to the problem.
 
 # Papers
 
-01 - Tibshirani, Robert. Regression Shrinkage and Selection via the Lasso. Journal of the Royal Statistical Society, Series B. 58 (1): 267–288.
+- Lal, A., Liu, K., Tibshirani, R., Sidow, A. & Ramazzotti, D. De novo mutational signature discovery in tumor genomes using SparseSignatures. PLOS Computational Biology 17, e1009119 (2021).
 
-02 - Zou, H. and Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society, Series B. 67: pp. 301–320.
+- Gemp, I., McWilliams, B., Vernade, C. & Graepel, T. Eigengame: PCA as a Nash equilibrium. ICLR 2021 (2021).
 
-03 - Clark, N.R., Hu, K.S., Feldmann, A.S. et al. The characteristic direction: a geometrical approach to identify differentially expressed genes. BMC Bioinformatics 15, 79 (2014).
+- Parsana, P., Ruberman, C., Jaffe, A.E., Schatz, M.C., Battle, A., and Leek, J.T. (2019). Addressing confounding artifacts in reconstruction of gene co-expression networks. Genome Biology 20, 94.
 
-04 - Danh V. Nguyen, David M. Rocke, Tumor classification by partial least squares using microarray gene expression data, Bioinformatics, 18, 1, 39–50 (2002).
+- McGinnis, C.S., Murrow, L.M., and Gartner, Z.J. (2019). DoubletFinder: Doublet Detection in Single-Cell RNA Sequencing Data Using Artificial Nearest Neighbors. Cell Systems 8, 329-337.e4.
 
-05 - Alexandrov, L. B., Nik-Zainal, S., Wedge, D. C., Campbell, P. J. & Stratton, M. R. Deciphering signatures of mutational processes operative in human cancer. Cell Rep. 3, 246–259 (2013).
+- Plaut, E. (2018). From Principal Subspaces to Principal Components with Linear Autoencoders. ArXiv:1804.10253. 
 
-06 - Perra, N., Santo, F. Spectral Centrality Measures in Complex Networks. Physical Review E 78.3 (2008) https://arxiv.org/abs/0805.3322
+- Field, A. E. et al. DNA Methylation Clocks in Aging: Categories, Causes, and Consequences. Molecular Cell 71, 882–895 (2018).
 
-07 - Singer-Clark, T. (2014). Morality Metrics On Iterated Prisoner’s Dilemma Players https://www.scottaaronson.com/morality.pdf
+- Ma, J., Yu, M., Fong, S. et al. Using deep learning to model the hierarchical structure and function of a cell. Nat Methods 15, 290–298 (2018).
 
-08 - Ma, J., Yu, M., Fong, S. et al. Using deep learning to model the hierarchical structure and function of a cell. Nat Methods 15, 290–298 (2018).
+- Ionita-Laza, I., McCallum, K., Xu, B. & Buxbaum, J. D. A spectral approach integrating functional genomic annotations for coding and noncoding variants. Nat Genet 48, 214–220 (2016).
 
-09 - P. Baldi and K. Hornik, “Neural networks and principal component analysis: Learning from examples without local minima,” Neural Networks, vol. 2(1), pp. 53–58, 1989.
+- Alexandrov, L.B., Jones, P.H., Wedge, D.C., Sale, J.E., Campbell, P.J., Nik-Zainal, S., and Stratton, M.R. (2015). Clock-like mutational processes in human somatic cells. Nature Genetics 47, 1402–1407.
 
-10 - Leek JT, Johnson WE, Parker HS, Jaffe AE, Storey JD. 2012. The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics 28.6: 882–883.
+- Hart, Y., Sheftel, H., Hausser, J., Szekely, P., Ben-Moshe, N.B., Korem, Y., Tendler, A., Mayo, A.E., and Alon, U. (2015). Inferring biological tasks using Pareto analysis of high-dimensional data. Nature Methods 12, 233–235.
 
-11 - Parsana, P., Ruberman, C., Jaffe, A.E., Schatz, M.C., Battle, A., and Leek, J.T. (2019). Addressing confounding artifacts in reconstruction of gene co-expression networks. Genome Biology 20, 94.
+- Clark, N.R., Hu, K.S., Feldmann, A.S. et al. The characteristic direction: a geometrical approach to identify differentially expressed genes. BMC Bioinformatics 15, 79 (2014).
 
-12 - Teschendorff, A. E., Journée, M., Absil, P. A., Sepulchre, R. & Caldas, C. Elucidating the altered transcriptional programs in breast cancer using independent component analysis. PLoS Comput. Biol. 3, e161 (2007).
+- Singer-Clark, T. (2014). Morality Metrics On Iterated Prisoner’s Dilemma Players https://www.scottaaronson.com/morality.pdf
 
-13 - Langfelder, P. & Horvath, S. WGCNA: an R package for weighted correlation network analysis. BMC Bioinformatics 9, 559 (2008).
+- Alexandrov, L. B., Nik-Zainal, S., Wedge, D. C., Campbell, P. J. & Stratton, M. R. Deciphering signatures of mutational processes operative in human cancer. Cell Rep. 3, 246–259 (2013).
 
-14 - Alexandrov, L.B., Jones, P.H., Wedge, D.C., Sale, J.E., Campbell, P.J., Nik-Zainal, S., and Stratton, M.R. (2015). Clock-like mutational processes in human somatic cells. Nature Genetics 47, 1402–1407.
+- Leek JT, Johnson WE, Parker HS, Jaffe AE, Storey JD. 2012. The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics 28.6: 882–883.
 
-15 - Hart, Y., Sheftel, H., Hausser, J., Szekely, P., Ben-Moshe, N.B., Korem, Y., Tendler, A., Mayo, A.E., and Alon, U. (2015). Inferring biological tasks using Pareto analysis of high-dimensional data. Nature Methods 12, 233–235.
+- Langfelder, P. & Horvath, S. WGCNA: an R package for weighted correlation network analysis. BMC Bioinformatics 9, 559 (2008).
 
-16 - Lipovetsky, S. and Conklin, M. (2001), Analysis of regression in game theory approach. Appl. Stochastic Models Bus. Ind., 17: 319-330.
+- Teschendorff, A. E., Journée, M., Absil, P. A., Sepulchre, R. & Caldas, C. Elucidating the altered transcriptional programs in breast cancer using independent component analysis. PLoS Comput. Biol. 3, e161 (2007).
 
-17 - Plaut, E. (2018). From Principal Subspaces to Principal Components with Linear Autoencoders. ArXiv:1804.10253. 
+- Zou, H. and Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society, Series B. 67: pp. 301–320.
 
-18 - McGinnis, C.S., Murrow, L.M., and Gartner, Z.J. (2019). DoubletFinder: Doublet Detection in Single-Cell RNA Sequencing Data Using Artificial Nearest Neighbors. Cell Systems 8, 329-337.e4.
+- Tibshirani, Robert. Regression Shrinkage and Selection via the Lasso. Journal of the Royal Statistical Society, Series B. 58 (1): 267–288.
 
-19 - Elizalde, S., Laughney, A.M., and Bakhoum, S.F. (2018). A Markov chain for numerical chromosomal instability in clonally expanding populations. PLOS Computational Biology 14, e1006447.
+- Danh V. Nguyen, David M. Rocke, Tumor classification by partial least squares using microarray gene expression data, Bioinformatics, 18, 1, 39–50 (2002).
+
+- Lipovetsky, S. and Conklin, M. (2001), Analysis of regression in game theory approach. Appl. Stochastic Models Bus. Ind., 17: 319-330.
+

@@ -7,7 +7,7 @@
 Welcome to the supporting website for the **Elements of Mathematics** course of the [Master in
  Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics). 
  
-# Fall 2021-2022
+# Fall 2022-2023
 
 {% assign sorted = site.posts | sort: 'date' %}
 <ul>
@@ -21,7 +21,7 @@ Welcome to the supporting website for the **Elements of Mathematics** course of 
 # Timetable
 
 Check the [official timetable](https://gestioacademica.upf.edu/pds/consultaPublica/look%5Bconpub%5DInicioPubHora
-?entradaPublica=true&idiomaPais=ca.ES&centro=804&estudio=8045&PlanDocente=2021) for the fall 2021 term.
+?entradaPublica=true&idiomaPais=ca.ES&centro=804&estudio=8045&PlanDocente=2021) for the fall 2022 term.
 
 # Content
 

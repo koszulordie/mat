@@ -38,11 +38,6 @@ The sessions will serve several purposes:
 3. Q&A and discussion
 4. Run tutorials
 
-## Remote sessions
-
-Sessions on **13 and 20 october will be remote**. For remote sessions we will be using the [collaborate](https://www
-.blackboard.com/teaching-learning/collaboration-web-conferencing/blackboard-collaborate) web conferencing platform. The remote session links will be posted in the Aula Global MAT page.
-
 # Evaluation
 
 Evaluation will have three components:

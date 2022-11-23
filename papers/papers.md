@@ -82,6 +82,7 @@ and provide a digest of their solution to the problem.
 
 # Papers
 
+
 - Lal, A., Liu, K., Tibshirani, R., Sidow, A. & Ramazzotti, D. De novo mutational signature discovery in tumor genomes using SparseSignatures. PLOS Computational Biology 17, e1009119 (2021).
 
 - Gemp, I., McWilliams, B., Vernade, C. & Graepel, T. Eigengame: PCA as a Nash equilibrium. ICLR 2021 (2021).
@@ -98,13 +99,15 @@ and provide a digest of their solution to the problem.
 
 - Ionita-Laza, I., McCallum, K., Xu, B. & Buxbaum, J. D. A spectral approach integrating functional genomic annotations for coding and noncoding variants. Nat Genet 48, 214–220 (2016).
 
-- Alexandrov, L.B., Jones, P.H., Wedge, D.C., Sale, J.E., Campbell, P.J., Nik-Zainal, S., and Stratton, M.R. (2015). Clock-like mutational processes in human somatic cells. Nature Genetics 47, 1402–1407.
+- Williams, M., Werner, B., Barnes C., Graham, T., Sottoriva, A. (2016) Identification of neutral tumor evolution across cancer types. Nature Genetics 48 (3).
 
 - Hart, Y., Sheftel, H., Hausser, J., Szekely, P., Ben-Moshe, N.B., Korem, Y., Tendler, A., Mayo, A.E., and Alon, U. (2015). Inferring biological tasks using Pareto analysis of high-dimensional data. Nature Methods 12, 233–235.
 
 - Clark, N.R., Hu, K.S., Feldmann, A.S. et al. The characteristic direction: a geometrical approach to identify differentially expressed genes. BMC Bioinformatics 15, 79 (2014).
 
 - Singer-Clark, T. (2014). Morality Metrics On Iterated Prisoner’s Dilemma Players https://www.scottaaronson.com/morality.pdf
+
+- Strino, F., Parisi, F., Micsinai, M., Kluger, Y. (2013) TrAp: a tree approach for fingerprinting subclonal tumor composition. Nucleic Acids Research 41 (17) 
 
 - Alexandrov, L. B., Nik-Zainal, S., Wedge, D. C., Campbell, P. J. & Stratton, M. R. Deciphering signatures of mutational processes operative in human cancer. Cell Rep. 3, 246–259 (2013).
 
@@ -118,7 +121,6 @@ and provide a digest of their solution to the problem.
 
 - Tibshirani, Robert. Regression Shrinkage and Selection via the Lasso. Journal of the Royal Statistical Society, Series B. 58 (1): 267–288.
 
-- Danh V. Nguyen, David M. Rocke, Tumor classification by partial least squares using microarray gene expression data, Bioinformatics, 18, 1, 39–50 (2002).
+- Lipovetsky, S. and Conklin, M. (2001). Analysis of regression in game theory approach. Appl. Stochastic Models Bus. Ind., 17: 319-330.
 
-- Lipovetsky, S. and Conklin, M. (2001), Analysis of regression in game theory approach. Appl. Stochastic Models Bus. Ind., 17: 319-330.
-
+- Saitou, N., Nei, M. (1987). The Neighbor-joining Method: A New Method for Reconstructing Phylogenetic Trees. Mol. Biol. Evol. 4 (4).

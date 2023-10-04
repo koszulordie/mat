@@ -7,7 +7,7 @@
 Welcome to the supporting website for the **Elements of Mathematics** course of the [Master in
  Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics). 
  
-# Fall 2022-2023
+# Fall 2023-2024
 
 {% assign sorted = site.posts | sort: 'date' %}
 <ul>
@@ -20,27 +20,26 @@ Welcome to the supporting website for the **Elements of Mathematics** course of 
 
 # Timetable
 
-Check the [official timetable](https://gestioacademica.upf.edu/pds/consultaPublica/look%5Bconpub%5DInicioPubHora
-?entradaPublica=true&idiomaPais=ca.ES&centro=804&estudio=8045&PlanDocente=2021) for the fall 2022 term.
+Check the [official timetable](https://gestioacademica.upf.edu/pds/consultaPublica/look[conpub]InicioPubHora?entradaPublica=true&lock=true&@f7e536bed26c009727edf24c0a583d66=@9bee282a7d8e0091&@dee7125d9d9a52ef82586f940dcf3109=@12271687f1f1213a) for the fall 2023 term.
 
 # Content
 
-Each session has its own page including the syllabus, content to be watched/read before the session (entirely optional but recommended), links to exercises for practice and supplementary content.
+Each session has its own page including the syllabus and additional content to be watched/read.
 
-Sessions will be ~2h covering a bunch of related topics. To make the most our of each session it would be beneficial to watch/read content supplied before the session takes place.
+Sessions will be ~2h covering a bunch of related topics. To make the most out of each session it would be beneficial to have a look at the content supplied before the session takes place.
 
 ## Aim
 
 The sessions will serve several purposes:
 
 1. Present fundamental concepts
-2. Solve exercises
-3. Q&A and discussion
+2. Live exercise solving
+3. Q&A
 4. Run tutorials
 
 # Evaluation
 
-Evaluation will have three components:
+Evaluation will have two components:
 
 1. [Paper digest]({{ site.baseurl }}{% link papers/papers.md %})
 2. Final test
@@ -49,13 +48,11 @@ Weighting: 30% (1) + 70% (2)
 
 # Teachers
 
-**Ferran Muiños** will act as course coordinator. You can learn a bit more about his background by checking his publications in [biomedicine](https
-://pubmed.ncbi.nlm.nih.gov/?term=Mui%C3%B1os+F%5BAuthor%5D&sort=date) and [math](https://zbmath.org/?q=ai%3Amuinos.ferran).
+**Ferran Muiños** will act as course coordinator. You can check his publications [here](https://scholar.google.es/citations?user=PujyjakAAAAJ&hl=en).
 
-**Ramon Massoni** will act as invited speaker and teaching assistant for the tutorials. 
-You can find more about his work on his [github repo](https://github.com/massonix) and on [twitter](https://twitter.com/rmassonix).
+**Paula Gomis** will act as invited speaker and teaching assistant for the tutorials. 
 
-We were both students of this master back in the old days.
+Both are alumni of the master.
 
 # References
 

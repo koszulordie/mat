@@ -10,21 +10,22 @@ tags:
 
 ## Task description
 
-* Select a paper. Below I am proposing you a bunch of papers to work on.
+* You will be producing a short video lecture addressed to your peers in which you present a problem that has been worked out by someone else, 
+and provide a digest of their solution to the problem.
+
+* Below I am proposing you a bunch of papers to work on. You will choose one and work with it for the entire task.
 
     * These papers borrow a big deal of mathematical techniques and ideas from the two cornerstones of the course: linear algebra and optimization. 
 
-    * They are quite heterogeneous in terms of mathematical scope and accessibility. Please, mind to correctly tune the best balance between your interest 
-in the topic and the mathematical difficulty.
+    * They are quite heterogeneous in terms of mathematical scope and accessibility. Please, mind to correctly tune the best balance between your interest in the topic and the difficulty.
 
-    * You can propose papers from outside of the list. But then, please, agree with the teacher before moving forwards.
+    * You can propose papers from outside of the list. But then, please, make sure you agree with the teacher before moving forwards.
 
-* You will be composing a short article addressed to your peers in which you present a problem that has been worked out by someone else, 
-and provide a digest of their solution to the problem.
+* Your main goal is that your audience learns not only about the main findings of the work, but also about the key ideas playing a role behind the solution. In particular, you may not shy away from presenting some level of detail when you feel that they are justified.
 
-* Your main goal is that your readers learn not only about the main findings of the work, but also about the specific ideas playing a role behind the solution. In particular, you will not be shying away from the details.
+* The short video lecture will span no more than 10 minutes and you can present with graphical support such as slides or by making use of a whiteboard.
 
-* In your article you will be answering the following questions:
+* In your short video lecture you must address the following questions:
 
     * What is main question addressed in the paper?
 
@@ -32,37 +33,28 @@ and provide a digest of their solution to the problem.
 
     * What is the strategy proposed to answer the question?
 
-    * What are the main ideas behind the proposed solution? What is the novelty?
+    * What are the main ideas behind the proposed solution? Specifically, what are the main mathematical ideas behind the solution?
 
-    * Specifically, what are the main mathematical ideas behind the solution?
-
-    * Why do these mathematical ideas work as intended? What are the potential caveats?
+    * Do these mathematical ideas work as intended? Are there any potential caveats?
 
     * Have these ideas been tried before in this or a similar context?
 
-* The document should take about 1000-1500 words.
 
-* Do not copy stuff verbatim
+## Formal requirements
 
-## Working groups
+* You will work individually.
 
-* You may work individually or in pairs.
+* You must inform everybody which paper you will be working on: we will do so using a wiki in the Aula Global of the course.
 
-* You may repeat papers, but make sure to let us know through the aula global task which paper and with whom you will be working.
+* You are allowed to work on the same paper another colleague is working on. 
+
+* Do not read aloud or copy excerpts from the source verbatim.
+
 
 
 ## Deadline
 
 * 23rd December 23:59
-
-
-
-## Scoring system
-
-* Both individual and paired works can reach the maximum score; in particular, co-authors of paired works will get the same score.
-
-* However, the evaluation will be somewhat stricter for paired works, as the overall expected quality
- will be higher and flaws will penalize more.
 
 
 ## Evaluation criteria
@@ -77,7 +69,7 @@ and provide a digest of their solution to the problem.
 
 * Critical thinking
 
-* Tidiness and typesetting quality.
+* Tidiness of content
 
 
 # Papers

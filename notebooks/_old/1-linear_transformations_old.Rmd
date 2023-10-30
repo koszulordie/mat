@@ -1,0 +1,459 @@
+---
+title: "Hands on session 1: Linear Transformations"
+author: "Ferran Muiños and Ramon Massoni-Badosa"
+date: "7/2/2020"
+output: 
+  BiocStyle::html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, out.width = "100%", fig.align='center', 
+                      message=FALSE, warning = FALSE)
+options(width = 1200)
+```
+
+# Introduction and objectives
+
+This session will focus on linear maps. Specifically, we aim to accomplish the following objectives:
+
+1. Relate the geometry of linear maps to the concepts of rank, null space, determinant and invertibility.
+2. Create, subset, join, operate and visualize matrices in R.
+
+
+# Pre-requisites
+
+Checkout the pre-requisites in the course website.
+
+
+# Revision of key concepts
+
+## Linear transformations
+
+Simply put, we can think of a transformation as a function or program: something that takes an input vector and "spits" an output vector. Such a transformation is deemed "linear" if it fulfills two additional requirements:
+
+1. Applying the transformation of a sum of vectors gives the same result as applying the sum of the respective transformations:
+
+$$
+L(u + v) = L(u) + L(v)
+$$
+2. Scaling a vector by a scalar $\lambda$ then applying the transformation gives the same result as applying the transformation of the vector first then scaling the result by $\lambda$:
+
+$$
+L(\lambda u) = \lambda L(u)
+$$
+
+
+```{r echo=FALSE}
+x <- matrix(c("u1", "u2"), nrow = 2)
+i_hat <- matrix(c(1, 0), nrow = 2)
+j_hat <- matrix(c(0, 1), nrow = 2)
+write_matex2 <- function(x) {
+  begin <- "\\begin{bmatrix}"
+  end <- "\\end{bmatrix}"
+  X <-
+    apply(x, 1, function(x) {
+      paste(
+        paste(x, collapse = "&"),
+        "\\\\"
+      )
+    })
+  paste(c(begin, X, end), collapse = "")
+}
+```
+
+To illustrate this, consider the following vector $u = `r write_matex2(x)`$, which can be expressed as a linear combination of the canonical basis vectors:
+
+$$
+u = u_1 `r write_matex2(i_hat)` + u_2 `r write_matex2(j_hat)`
+$$
+
+Let us take the linear transformation L of the vector u and apply the two properties of linear transformations:
+
+$$
+L(u) = L \left( u_1 `r write_matex2(i_hat)` + u_2 `r write_matex2(j_hat)`\right) = L \left(u_1 `r write_matex2(i_hat)`\right) + L \left(u_2 `r write_matex2(j_hat)`\right) = u_1 L\left(`r write_matex2(i_hat)`\right) + u_2 L\left(`r write_matex2(j_hat)`\right)
+$$
+
+From the last result, we can deduce two key facts:
+
+1. Linear transformations are completely determined by where the basis vectors "land".
+2. Linear transformation can be expressed as a matrix-vector product (Ax = b).
+
+The (2) fact can be expressed as follows:
+
+$$
+Ax = b
+$$
+$$
+x_1 a_1 + x_2 a_2 = b
+$$
+Where a<sub>1</sub> and a<sub>2</sub> are the column vectors of A (transformed basis vectors), x is the input vector and b is the output vector.
+
+
+## Important definitions
+
+Given a matrix A, we can attach different concepts to it:
+
+* **Column space**: vector space spanned by the column vectors of A, denoted C(A).
+* **Rank**: number of linearly independent columns of A, which coincides with the dimension of C(A).
+* **Determinant**: factor by which a unit of length (n=1), area (n=2) or volume (n=3) is multiplied after transforming the space with the linear transformation encoded by A.
+* **Inverse matrix**: matrix that undoes that what A accomplishes via matrix multiplication; i.e., if Ax = b, A^-1^b = x.
+* **Null space**: vector space comprising all the vectors x such that Ax = 0; i.e., the set of vectors that are mapped to 0 by the linear transformation encoded by A.
+
+Again, the main objective is **to develop the geometric intuition of linear transformations to see how all these concepts are connected**:
+![](../img/linear_transformations_shed_light.png)
+
+There are two of these relations that are useful to understand algebraically:
+
+1. Relation between rank and dim(N(A)):
+
+A matrix A is full rank (which also means that all column vectors are linearly independent) if and only if the null space is the zero vector space. You can find the proof of this theorem in the [Khan Academy](https://en.khanacademy.org/) videos in the prerequisites sections.
+
+In a more condensed notation:
+$$
+a_1, \ldots, a_n \hspace{0.2cm} \textrm{are linearly independent} \Longleftrightarrow N(A) = \{0\} 
+$$
+2. Relation between dim(N(A)) and invertibility:
+
+If A is a square matrix, A is invertible if and only if the null space is the zero vector space. You can find the proof of this theorem in the [third lecture](https://www.youtube.com/watch?v=FX4C-JpTFgY) (timestamps: 27:56-31:50) of the MIT course in linear algebra, by Gilbert Strang.
+
+
+# Shiny app walkthrough
+
+Herein, we will walk you through our shiny app that will allow you to fully understand linear transformations. Start by clicking the following link (or pasting it to your favorite web browser):
+
+[https://massonix.shinyapps.io/linear_transformations/](https://massonix.shinyapps.io/linear_transformations/)
+
+As you can see, there are 4 tabs:
+
+1. Visualization, which has two components. Visualization, which has two components. First there is an input box where the user should
+specify the number of dimensions and the matrix A that defines the linear transformation. Second there is
+the plot pane that shows the input and the output of the transformation.
+2. Gauss-Jordan. It contains a calculator that performs Gauss-Jordan elimination column-wise. The algorithm can be run either step-wise or fast-forwarded to the final result. As expected, it gives us two outputs: column echelon form (top) and transformation matrix (bottom). With this tab you can get an intuition of the Fundamental Theorem of Linear Algebra.
+3. Null Space. It calculates and represents the null space of the input matrix.
+4. Determinant. It calculates the determinant of the input matrix.
+
+To illustrate how all these concepts are connected, we start by fixing the rank (number of linearly independent columns) and see how that affects the rest of properties. We will use the following example matrices:
+
+
+```{r echo=FALSE}
+E1 <- matrix(c(-2, 0, 0, -2), 2, 2, byrow = FALSE)
+E2 <- matrix(c(1, 3, 3, 9), 2, 2, byrow = FALSE)
+E3 <- matrix(c(1, 2, 3, 2, 4, 6, 3, 6, 9), 3, 3, byrow = FALSE)
+```
+
+$$
+E1 = `r write_matex2(E1)`
+$$
+
+$$
+E2 = `r write_matex2(E2)`
+$$
+
+$$
+E3 = `r write_matex2(E3)`
+$$
+
+After this, you should realize two important connections:
+
+1. If the matrix is not full rank the determinant is 0
+2. dim(C(A)) + dim(N(A)) = n
+
+
+# Reverse engineer linear transformations
+
+## Basic transformations
+
+**Exercise: find the matrix that describes the following transformations of 2D space:**
+
+1. expands all lengths by a factor of 2 in all axes;
+2. shrinks all lengths by a factor of 1/3;
+3. rotates all vectors by $\pi/6$ radians (30 degrees) about the origin (hint: use [unit circle](https://en.wikipedia.org/wiki/Unit_circle) and this [trigonometry calculator](https://www.rapidtables.com/calc/math/trigonometry-calculator.html)).
+4. reflects all vectors about the y-axis.
+5. projects all vectors onto the x-axis.
+
+**Exercise: find the matrix that describes the following transformations of 3D space:**
+
+1. expands all lengths by a factor of 2 in all axes;
+2. shrinks all lengths by a factor of 1/2;
+3. reflects all vectors with respect to the {x,y} plane;
+4. projects all vectors onto the {x,z} plane;
+5. rotates all vectors by $\pi/3$ radians (60 degrees) around the z-axis (hint: use unit circle)
+
+For each transformation, you should answer these questions:
+
+- Are the column vectors linearly independent?
+- Is the matrix invertible?
+- Which is the dimension of the null space?
+- Which is the determinant of A?
+
+We will leave an average of 2-3 min for each exercise, depending on the difficulty, then we will ask you 
+to tell us which matrices you guessed.
+
+## Composition of basic transformations
+
+Importantly, you can think of matrix multiplication as composition of transformations. In other words, whenever you are considering a product of matrices C=AB as a single transformation:
+
+$$
+Cx = (AB)x = y
+$$
+
+the transformation C is encoding the concatenation of the transformation A after B, in the sense that first x is the input of B, and then the output is the input of A:
+
+$$
+x \stackrel{B}{\longmapsto} (Bx) \stackrel{A}{\longmapsto} A(Bx) = (AB)x = Cx
+$$
+So every time we add a new "linear transformation" step to our output, we are piling up matrices by multiplication on the left.
+
+You can find a more thorough explanation in [this 3blue1brown video](https://www.youtube.com/watch?v=XkY2DOUCWMU).
+
+In the previous exercise, try to find the matrix that describes the following transformations:
+
+1. Apply matrix (1) and then (3).
+2. Apply matrix (3) and then (4).
+
+
+**Challenge**: is matrix multiplication commutative? (hint: do you get the same result if you apply (3) then (4), or the other way round?)
+
+
+
+# Matrix algebra with R
+
+## Introduction to R
+
+R is an open-source and **vectorized** programming language. In R we never deal with scalars: single values are vectors of length 1:
+
+```{r}
+x <- 5
+length(x)
+```
+
+It is also a **functional** programming language, which means that operations are centered around functions, and that it provides many tools for the creation and manipulation of functions (see [this book](http://adv-r.had.co.nz/) for more). Most importantly, functions take inputs, and this inputs can be of many different classes:
+
+```{r}
+class(x)
+```
+
+### Basic data types
+
+We have 3 basic data types: numerics, characters and logicals:
+
+Numerics are needed to perform arithmetic operations:
+
+```{r}
+y <- 9
+z <- x + y
+class(z)
+```
+
+Characters are what in other languages are known as strings:
+
+```{r}
+quote <- "Gilbert Strang rocks!"
+print(quote)
+```
+
+Finally, logicals (known as booleans in other programming languages) are important in conditions:
+
+```{r}
+(5 + 5) == 10
+(6 - 7) > 0
+```
+
+We can convert between data types with the `as.*()` functions:
+
+```{r}
+logical <- TRUE
+as.character(logical)
+as.numeric(logical)
+```
+
+
+### Compound data types
+
+When we have more than one element, we can think of compound data types. They can be classified using two criteria:
+
+- Dimension: 1D or 2D
+- Homogeneous or heterogeneous, defined by whether they store a single or multiple basic data types, respectively.
+
+Combining both criteria, we get the following classification of R's data structures (see [this chapter](http://adv-r.had.co.nz/Data-structures.html) for more):
+
+|    | Homogeneous   | Heterogeneous |
+|----|---------------|---------------|
+| 1D | Atomic vector | List          |
+| 2D | Matrix        | Data frame    |
+
+They are created with specific functions:
+
+```{r}
+my_vector <- c(1, 2, 3)
+my_list <- list(1, "Ferran", TRUE)
+my_matrix <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2, byrow = FALSE)
+my_data_frame <- data.frame(name = c("Ferran", "Ramon"), is_postdoc = c(TRUE, FALSE))
+my_vector
+my_list
+my_matrix
+my_data_frame
+```
+
+As you can imagine, these data structures are used for different purposes and taken by distinct functions. Here, we will focus on matrices.
+This section aims to teach the fundamentals of R so that you will be able to perform linear algebra operations and visualize them. We will start by teaching the basic data structures, categorized by dimensionality (1D: atomic vectors + lists; 2D: matrices + data.frames) and whether they can contain only one value type (homogeneous: atomic vectors and matrices) or more than one (heterogeneous: lists and data.frames). Moreover, here I showcase an example of the main functions we should cover in the hands-on session:
+
+
+## Create, subset and combine matrices in R
+
+We will show these operations for both atomic vectors and matrices. Let us start by creating two examples:
+
+```{r}
+# Create
+x <- c(1, 2, 3)
+A <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3, ncol = 3, byrow = FALSE)
+x 
+A
+```
+
+
+Get the dimensions:
+
+```{r}
+length(x)
+dim(A)
+nrow(A)
+ncol(A)
+```
+
+
+To ease subsetting we can name rows and columns as follows:
+
+```{r}
+names(x) <- c("1", "2", "3")
+rownames(A) <- c("a", "b", "c")
+colnames(A) <- c("x", "y", "z")
+x
+A
+```
+
+There are 3 ways of subsetting a vector: by index, by character or by logicals:
+
+```{r}
+# Subset
+## Numeric
+x[1]
+x[c(2, 3)]
+x[c(3, 3)]
+A[1:3, -2]
+
+## Character
+x["2"]
+A[c("a", "b"), ]
+```
+
+**Challenge**: Create a vector from 1 to 100 (included), and then filter it to keep only the multiples of three. You're not allowed to use the `seq()` function.
+
+We can concatenate vectors and matrices as follows:
+
+```{r}
+# Concatenate
+y <- c(5, 6)
+z <- c(x, y)
+z
+rbind(A, x)
+cbind(A, x)
+```
+
+
+## Basic operations with matrices
+
+```{r}
+# Transpose
+t(A)
+
+
+# Matrix-vector operations
+A + x
+A * x
+A %*% x
+t(x[1] %*% A[, 1]) + t(x[2] %*% A[, 2]) + t(x[3] %*% A[, 3])
+
+
+# Matrix-Matrix operations
+A + A
+A * A
+A %*% A
+```
+
+
+## Heatmap
+
+A crucial skill in bioinformatics is to be able to visualize matrices. In real-world settings, matrices that harbor biological data (i.e. expression matrices) are too large to read them. In this context, heatmap represent a great alternative to pinpoint patterns in the data. You can read more about heatmaps [here](https://en.wikipedia.org/wiki/Heat_map).
+
+
+We will show you how to plot heatmaps in R using the `pheatmap` package. As an example, we will use a single-cell gene expression matrix of 2,638 peripheral blood mononuclear cells ([PBMC](https://en.wikipedia.org/wiki/Peripheral_blood_mononuclear_cell)). We download this data using the [`Seurat`](https://satijalab.org/seurat/) package,  which has become a swiss-army-knife of
+the software to analyze scRNA-seq data. The following chunk of code is executed to get the toy expression matrix, but you are not expected to understand it:
+
+Get data
+```{r}
+library(pheatmap)
+library(Seurat)
+library(SeuratData)
+library(dplyr)
+InstallData("pbmc3k")
+data("pbmc3k")
+pbmc3k
+
+
+# Get expression matrix and reorder columns
+table(pbmc3k$seurat_annotations)
+pbmc3k$barcode <- colnames(pbmc3k)
+pbmc3k <- ScaleData(pbmc3k, features = rownames(pbmc3k))
+sorted_barcodes <- pbmc3k@meta.data %>%
+  dplyr::arrange(seurat_annotations) %>%
+  dplyr::pull("barcode")
+expr_matr <- pbmc3k[["RNA"]]@scale.data[, sorted_barcodes]
+
+
+# Subset to genes of interest (GOI)
+goi <- c("LDHB", "CCR7", "CD3D", "CD3E", "LEF1", "IL32", "IL7R", "CD2", "S100A9",
+         "S100A8", "CD14", "CST3", "LYZ", "FTL", "MS4A1", "CD79A", "CD79B", "VPREB3",
+         "CCL5", "NKG7", "GZMK", "CD8A", "KLRG1", "FCGR3A", "AIF1", "MS4A7", "IFITM3",
+         "RHOC", "CCL4")
+expr_matr <- expr_matr[goi, ]
+
+
+# Create column annotation metadata
+col_metadata <- pbmc3k@meta.data[, "seurat_annotations", drop = FALSE]
+colnames(col_metadata) <- "cell_type"
+```
+
+
+Now we will plot the heatmap. The `pheatmap()` function has a lot of parameters to fine-tune the visualization, we suggest you explore the documentation executing `?pheatmap`:
+
+
+```{r}
+annotation_colors <-  c("aquamarine", "orange", "green4", "blueviolet", "black",
+                        "coral2", "deepskyblue3", "red", "gold")
+names(annotation_colors) <- levels(col_metadata$cell_type)
+annotation_list <- list(cell_type = annotation_colors)
+pheatmap::pheatmap(
+  expr_matr,
+  cluster_rows = FALSE,
+  cluster_cols = FALSE,
+  show_colnames = FALSE,
+  color = viridis::viridis(30),
+  annotation_col = col_metadata,
+  annotation_colors = annotation_list
+)
+```
+
+
+Note that there are multiple R packages to plot heatmaps. Recently, [`ComplexHeatmap`](https://jokergoo.github.io/ComplexHeatmap-reference/book/) has gained a lot of attention.
+
+# Session Information
+
+```{r}
+sessionInfo()
+```
+
+

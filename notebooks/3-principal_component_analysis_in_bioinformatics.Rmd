@@ -16,7 +16,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-
 # Introduction and objectives
 
 In this hands-on session, we will show how principal component analysis (PCA) is used in common bioinformatics workflows. We will use a toy [single-cell RNA-seq (scRNA-seq)](https://www.nature.com/articles/s41596-018-0073-y) dataset and a real NCI microarray data to illustrate it.
@@ -46,7 +45,7 @@ PCA offers several advantages when analyzing biological data:
 ## Introduction to scRNA-seq  
 Single-cell RNA-seq allows the gene expression profiling of thousands of cells, one a time. It is often exemplified using the following analogy:
 
-![](../img/single-cell_fruit_salad.png)
+![](../images/single-cell-fruit-salad.png)
 
 * Bulk RNA-seq would be analogous to a fruit smoothie, in which all we get is an average taste out of several fruits. Analogously, in bulk RNA-seq all we get is an average transcriptome across a population of cells.
 * scRNA-seq, on the other hand, is analogous to a fruit salad, in which you can taste one fruit at a time. Here, we get a transcriptome for each single cell, so we can understand cell-to-cell variability in gene expression.
@@ -69,7 +68,7 @@ Single-cell RNA-seq allows the gene expression profiling of thousands of cells, 
 
 **scRNA-seq** is a double-edged sword. On the one hand, scRNA-seq provides **unprecedented discriminative power** to chart all the cell types and states in a given tissue. This has catalyzed the creation of [the Human Cell Atlas (HCA)](https://elifesciences.org/articles/27041), which aims to classify all cells in the human body using scRNA-seq; and has been coined as "the periodic table of human cells".
 
-![](../img/human_cell_atlas.png)
+![](../images/human-cell-atlas.png)
 
 On the other hand, however, scRNA-seq has a **high degree of technical variability**, which can be introduced at multiple points of the process. Some examples include the following (Definitions extracted from table 1 of [this paper)](https://www.nature.com/articles/s41596-018-0073-y):
 
@@ -89,7 +88,7 @@ As an example, we will create an expression matrix with the following cells:
 
 In the following image you can visualize the redundancy between CD79A and CD79B. Together, they form the heterodimer CD79; which means that for every molecule of CD79A we need one of CD79B. Under the hood they are the same variable, which should be captured by a single principal component. 
 
-![](../img/CD79_figureA.png)
+![](../images/CD79_figureA.png)
 
 Image obtained from [this link](https://ashpublications.org/blood/article/120/6/1175/30492/The-B-cell-receptor-signaling-pathway-as-a)
 
@@ -137,10 +136,18 @@ Two ways to perform PCA in R:
 * Eigendecomposition of the covariance matrix.
 * `prcomp` function.
 
-Regardless of the method, we always need to normalize the data (center and scale). We will do it by using the function [`scale`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/scale):
+Regardless of the method, we always need to normalize the data (center and scale). We will do it by using the function [`scale`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/scale).
+
+The function `scale` takes as arguments the matrix and two parameters: `center` and `scale`, that can be either a logical value or a numeric-alike vector of length equal to the number of columns of the matrix. 
+
+* `center`:  if `center` is a numeric-alike vector with length equal to the number of columns of the matrix, then the output will have the result of substracting these values to each of the values in the corresponding columns. If `center` is `TRUE` then centering is done by subtracting the column means (omitting NAs) of the matrix from their corresponding columns, and if `center` is `FALSE`, no centering is done. 
+* `scale`: if `scale` is a numeric-alike vector with length equal to the number of columns of the matrix, then, after centering,  each column of the matrix is divided by the corresponding value from `scale`. If `scale` is `TRUE` then scaling is done by dividing the (centered) columns of the matrix by their standard deviations, and if `scale` is `FALSE`, no scaling is done. 
+
 
 ```{r}
-toy_normalized <- scale(toy, center = TRUE, scale = TRUE)
+toy_centered <- scale(toy, center = TRUE, scale = FALSE)
+toy_normalized <- scale(toy, center = TRUE, scale = rep((sqrt(nrow(toy)-1)), ncol(toy)))
+
 toy_normalized[1:5,1:5]
 ```
 
@@ -172,12 +179,11 @@ The **eigenvalues** contains the **variance** of the data along each principal c
 ```{r}
 var_eigen <- eigen_cov_matrix$values
 head(var_eigen)
-
 ```
 
-The **scores** of each data sample in the principal components can be obtained by multiplying the original matrix with the matrix with the eigenvectors as columns:
+The **scores** of each data sample in the principal components can be obtained by multiplying the original centered matrix with the matrix with the eigenvectors as columns:
 ```{r}
-scores_eigen <- toy_normalized %*% pdir_eigen
+scores_eigen <- toy_centered %*% pdir_eigen
 scores_eigen[1:5, 1:5]
 ```
 
@@ -185,10 +191,11 @@ scores_eigen[1:5, 1:5]
 ### PCA
 
 Now we will use a stand-alone PCA function provided by R, [`prcomp`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp), to calculate the principal components. 
-Using `scale = TRUE` we standardize the variables by converting the mean to zero and the standard deviation to one, directly within the function  `prcomp` . 
+
+For the `prcomp` function we don't need to scale the data, it is already implemented within the function. We do need to center the data. 
 
 ```{r}
-pca_out <- prcomp(toy, center = TRUE, scale = TRUE)
+pca_out <- prcomp(toy, center = TRUE, scale = FALSE)
 ```
 
 We can use the following keywords to parse the output instance:
@@ -203,8 +210,10 @@ pdir_pca[1:5,1:5]
 
 **Standard deviations** : **"sdev"**
 
+(We need to multiply by $n-1$ since, in `prcomp`, variances are computed with the usual divisor $n-1$. See [documentation](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp).)
 ```{r}
-var_pca <- pca_out$sdev ** 2
+var_pca <- (pca_out$sdev)** 2 
+
 head(var_pca)
 ```
 
@@ -226,6 +235,14 @@ In summary, we obtain the following:
 
 
 ## Infer dimensionality of the dataset
+
+<!-- **Note:** -->
+
+<!-- For the posterior analyses we will use: -->
+<!-- ```{r} -->
+<!-- pca_out <- prcomp(toy, center = TRUE, scale = TRUE) -->
+<!-- ``` -->
+
 
 When using `prcomp` function can get the **proportion of variance explained (PVE)** and the **cumulative proportion** with the `summary` function (more info in [this book](https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf)):
 
@@ -349,14 +366,14 @@ plot(
   sub = "",
   ylab = "Cophenetic distance"
 )
-abline(h = 2.5, col = "red")
+abline(h = 7.5, col = "red")
 
 
 ```
 
 Visualize the correspondent cluster to each of the cells:
 ```{r}
-hc_clusters <- cutree(hclust_average, h = 2.5)
+hc_clusters <- cutree(hclust_average, h = 7.5)
 hc_clusters
 ```
 
@@ -434,8 +451,9 @@ We will use the function `prcomp` to calculate the principal components.
 
 
 ## Perform PCA
+
 ```{r message=FALSE, warning=FALSE}
-pr_output <- prcomp(data_NCI60, center =TRUE,  scale = TRUE)
+pr_output <- prcomp(data_NCI60, center = TRUE)
 ```
 
 As in the previous example, we can calculate the **loadings**:

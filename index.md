@@ -46,6 +46,12 @@ Evaluation will have two components:
 
 Weighting: 30% (1) + 70% (2)
 
+# Final tests with answers
+
+1. [Fall 2021 - 1st round]({{ site.baseurl }}{% link final-tests/final-test-answers-2021-1.pdf %})
+2. [Fall 2021 - 2nd round]({{ site.baseurl }}{% link final-tests/final-test-answers-2021-2.pdf %})
+3. [Fall 2022]({{ site.baseurl }}{% link final-tests/final-test-answers-2022.pdf %})
+
 # Teachers
 
 **Ferran Muiños** will act as course coordinator. You can check his publications [here](https://scholar.google.es/citations?user=PujyjakAAAAJ&hl=en).

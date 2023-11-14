@@ -1,0 +1,629 @@
+\documentclass[]{book}
+
+%These tell TeX which packages to use.
+\usepackage{array,epsfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{multirow}
+
+
+%Here I define some theorem styles and shortcut commands for symbols I use often
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem*{rmk}{Remark}
+\newtheorem{lem}{Lemma}
+\newtheorem*{joke}{Joke}
+\newtheorem{ex}{Example}
+\newtheorem*{soln}{Solution}
+\newtheorem{prop}{Proposition}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\graph}{\mathrm{graph}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\Z}{\bb{Z}}
+\newcommand{\Q}{\bb{Q}}
+\newcommand{\R}{\bb{R}}
+\newcommand{\C}{\bb{C}}
+\newcommand{\N}{\bb{N}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\m}{\mathbf{m}}
+\newcommand{\MM}{\mathscr{M}}
+\newcommand{\HH}{\mathscr{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\Ho}{\in\HH(\Om)}
+\newcommand{\bd}{\partial}
+\newcommand{\del}{\partial}
+\newcommand{\bardel}{\overline\partial}
+\newcommand{\textdf}[1]{\textbf{\textsf{#1}}\index{#1}}
+\newcommand{\img}{\mathrm{img}}
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\inter}[1]{\mathrm{int}{#1}}
+\newcommand{\exter}[1]{\mathrm{ext}{#1}}
+\newcommand{\cl}[1]{\mathrm{cl}{#1}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\cnt}{\mathrm{ct}}
+\newcommand{\osc}{\mathrm{osc}}
+\newcommand{\LL}{\mathbf{L}}
+\newcommand{\UU}{\mathbf{U}}
+\newcommand{\support}{\mathrm{support}}
+\newcommand{\AND}{\;\wedge\;}
+\newcommand{\OR}{\;\vee\;}
+\newcommand{\Oset}{\varnothing}
+\newcommand{\st}{\ni}
+\newcommand{\wh}{\widehat}
+\newcommand\yellow[1]{\colorbox{yellow}{#1}}
+\newcommand\ans{\underline{Answer}: }
+
+%Pagination stuff.
+\setlength{\topmargin}{-.3 in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.in}
+\setlength{\textwidth}{6.5in}
+\pagestyle{empty}
+
+
+
+\begin{document}
+
+
+\begin{center}
+\textbf{Exercise Set (due on Sunday 17th Nov 2019)}\\ %You should put your name here
+Elements of Mathematics -- Bioinformatics for Health Sciences \\
+\end{center}
+
+\vspace{0.2 cm}
+
+\begin{enumerate}
+
+
+% ----1----
+
+\item Let
+
+\[
+   M=
+  \left[ {\begin{array}{cc}
+   \frac{1}{\sqrt{5}} & \frac{2}{\sqrt{5}} \\
+   \frac{2}{\sqrt{5}} & -\frac{1}{\sqrt{5}} \\
+  \end{array} } \right].
+\]
+
+\begin{enumerate}
+\item Is $M$ invertible? Justify your answer.
+
+\ans  Yes, it is. This is a square matrix with maximum rank. You can also check that it has non-zero determinant:
+$\det(M) = -\frac{1}{5} - \frac{4}{5} = -1 \neq 0.$
+
+\item Compute $M^{-1}$ using Gauss-Jordan elimination.
+
+\ans First notice that $M = \frac{1}{\sqrt{5}} M_0$ where
+
+$$
+M_0 =
+\left[ 
+{\begin{tabular}{cc}
+  1 & 2  \\
+  2 & -1 \\
+  \end{tabular} }
+\right]
+$$
+
+Then $M^{-1} = \sqrt{5} M_0^{-1}$. Let's compute $M_0^{-1}$ (for convenience I will highlight the right hand side matrix in yellow):
+
+\[
+{\begin{bmatrix}
+  1 & 2  & \yellow{1} & \yellow{0} \\
+  2 & -1  &\yellow{0} & \yellow{1}
+  \end{bmatrix}
+}
+\stackrel{i}{\sim}
+{\begin{bmatrix}
+  1 & 2  & \yellow{1} & \yellow{0} \\
+  0 & -5  & \yellow{-2} & \yellow{1}
+  \end{bmatrix}
+}
+\stackrel{ii}{\sim}
+{\begin{bmatrix}
+  1 & 2  & \yellow{1} & \yellow{0} \\
+  0 & 1  & \yellow{2/5} & \yellow{-1/5}
+  \end{bmatrix}
+}
+\stackrel{iii}{\sim}
+{\begin{bmatrix}
+  1 & 0  & \yellow{1/5} & \yellow{2/5} \\
+  0 & 1  & \yellow{2/5} & \yellow{-1/5}
+  \end{bmatrix}
+},
+\]
+
+with steps: 
+\begin{enumerate}
+\item $R_2 \leftarrow R_2 - 2\cdot R_1$, 
+\item $R_2 \leftarrow (-1/5) \cdot R_2$,
+\item $R_1 \leftarrow R_1 - 2\cdot R_2$.
+\end{enumerate}
+
+Then
+
+\[
+   M^{-1}=\sqrt{5}
+  \begin{bmatrix}
+   1/5 & 2/5 \\
+   2/5 & -1/5 
+  \end{bmatrix} =
+  \begin{bmatrix}
+   1/\sqrt{5} & 2/\sqrt{5} \\
+   2/\sqrt{5} & -1/\sqrt{5}
+  \end{bmatrix} = M.
+\]
+
+\item Compute $\det(M)$ and $\det(M^{-1})$.
+
+\ans Since $M = M^{-1}$, $\det(M) = \det(M^{-1}) = -1$.
+
+
+\end{enumerate}
+
+
+% ----2----
+
+\item Notice that the determinant turns matrix multiplication into ordinary product of real numbers, that is, 
+if $A, B\in M_{n\times n}$ are square matrices, then $\det(AB)=\det(A)\det(B).$ 
+
+Consider the matrices:
+
+\[
+   A=
+  \left[ 
+  {\begin{array}{ccc}
+  1 & 0 & -3 \\
+  0 & 2 & 2 \\
+  0 & 0 & 7 \\
+  \end{array} } \right]
+\;\;\;
+   B=
+  \left[
+  {\begin{array}{ccc}
+  2 & 1 & 1 \\
+  0 & 1 & -1 \\
+  0 & 0 & -2
+  \end{array} } 
+   \right]
+\]
+
+
+\begin{enumerate}
+\item Using the recursive definition of determinant, reason why the determinant of a diagonal matrix is the product
+of the entries in the diagonal, i.e. if $D=\textrm{diag}(\lambda_1, \ldots, \lambda_n)$ then $\det(D) = \lambda_1 \cdot \ldots \cdot \lambda_n$.
+
+\ans The matrix $D = (d_{ij})$ has entries $d_{ii} = \lambda_i$ and $d_{ij} = 0$ for $i\neq j$. The recursive definition of determinant 
+we saw in class reads as follows:
+\[
+\det{D} = \sum_{i=1}^n (-1)^{i+1} d_{i1} \det(D_{-i1}),
+\]
+
+where $D_{-i1}$ is the submatrix of $D$ upon removing the $i$-th row and $1$-st column. Since 
+$d_{i1} = 0$ for all $i\neq 1$ and $\det(D_{-11}) = \textrm{diag}(\lambda_2,\ldots, \lambda_n)$, 
+the previous recurrence simplifies considerably:
+
+\[
+\det{D} = \lambda_1 \cdot \det({\textrm{diag}(\lambda_2,\ldots, \lambda_n)}).
+\]
+
+Clearly the same argument used to compute the determinant of the smaller diagonal matrix, 
+until we reach the base case where we have to compute the determinant of the $1\times 1$ matrix $\left[\lambda_n\right]$.
+
+\item Compute the determinant of the identity matrix.
+
+\ans Accoding to the previous remark $\det(\textrm{Id}_n) = 1^n = 1$.
+
+\item Notice that the matrices $A$ and $B$ given above satisfy that all their entries below the diagonal are zero:
+matrices satisfying this condition are known as ``upper triangular'' matrices. Reason why the determinant of an 
+upper triangular matrix is the product of the entries in the diagonal, i.e. if $T=(a_{ij})$ is upper triangular, 
+then $\det(T) = a_{11}\cdot\ldots\cdot a_{nn}.$
+
+\ans By definition
+
+\[
+\det{T} = \sum_{i=1}^n (-1)^{i+1} a_{i1} \det(T_{-i1}),
+\]
+
+where $a_{i1} = 0$ for all $i\neq 1$ and $T_{-11}$ is upper-triangular, then
+
+\[
+\det{T} = a_{11} \cdot \det(T_{-11}).
+\]
+
+Now the same line of reasoning can be as in part i) can be reproduced.
+
+\item Verify that the opening remark holds for the matrices $A$ and $B$ given above, 
+that is, $\det(AB)=\det(A)\det(B).$
+
+\ans You can compute the three determinants and check the relation holds. 
+Another avenue is to reason why this is true in the case of upper-triangular matrices. 
+First observe then that the product of upper-triangular matrices has to yield an upper-triangular matrix. By the previous part, 
+to compute the determinant of $AB$ we are only concerned about its diagonal 
+entries: its $i$-th diagonal entry is given by 
+
+\[
+(AB)_{ii} = \sum_{k=1}^n a_{ik}b_{ki} = a_{ii} b_{ii}
+\]
+
+since $a_{ik} = 0$ for $k < i$ and $b_{ki} = 0$ for $k > i$. Consequently, 
+$\det(AB) = (a_{11}b_{11}) \cdot \ldots \cdot (a_{nn}b_{nn})$. Then it is clear that 
+
+\[
+\det(AB) = (a_{11} \cdot \ldots \cdot a_{nn}) (b_{11} \cdot \ldots \cdot b_{nn})=\det(A)\det(B).
+\]
+
+\item Recall that when $A$ is an invertible matrix, it satisfies $AA^{-1} = A^{-1}A = I$. 
+Making use of the opening remark if necessary, reason why $\det(A^{-1}) = 1 / \det(A)$.
+
+\ans Since $AA^{-1} = A^{-1}A = I$ by applying determinant we have $\det(AA^{-1}) = \det(A)\det(A^{-1}) = \det(\textrm{Id}_m) = 1$.
+Making use of the last two equations we conclude that $\det(A^{-1}) = 1 / \det(A)$. Also there is no problem in dividing
+by $\det(A)$ because any invertible matrix has non-zero determinant.
+
+\end{enumerate}
+
+
+% ----3----
+
+\item Let
+
+\[
+   A=
+  \left[ {\begin{array}{ccc}
+   -4 & 2 & 0 \\
+   2 & -1 & 0 \\
+   0 & 1 & 1 \\
+  \end{array} } \right].
+\]
+
+Let $f_A : \R^3 \to \R^3$ be the linear map defined as $f_A(v) = Av$.
+
+\begin{enumerate}
+\item What is the rank of the matrix A? Justify your answer.
+
+\ans $\textrm{rank}(A) \leq 2$ because the first two rows are multiples of each other, but since the last 
+two rows are linearly independent (why?) $\textrm{rank}(A) \geq 2$. Then $\textrm{rank}(A) = 2$.  
+
+\item Let $\{e_1 = (1,0,0),e_2=(0,1,0),e_3=(0,0,1)\}$ be the canonical basis of $\R^3$.\\ 
+            Compute $f(e_1)$, $f(e_2)$ and $f(e_3)$.
+
+\ans Observe that $f(e_1)$, $f(e_2)$ and $f(e_3)$ are just the column vectors of $A$.
+
+\item Give a basis of the vector subspace $S\subset \R^3$ generated by $f(e_1), f(e_2), f(e_3)$.
+
+\ans Since $\textrm{rank}(A) = 2$ the columns of $A$ do not form a linearly independent set., but two 
+of them -- not necessarily any two of them -- can. In this case $f(e_1)$, $f(e_2)$ generate $S$ and are 
+linearly independent, consequently they are a basis of $S$.
+\end{enumerate} 
+
+
+% ----4----
+
+\item
+The transpose matrix of $A=(a_{ij}) \in M_{n\times m}$ is another matrix that has as rows the columns of $A$: it is denoted $A^t$. In particular, notice that $A^t \in M_{m\times n}$. For example:
+
+\[
+   A=
+  \left[ {\begin{array}{cc}
+   -1 & 1 \\
+   2 & -1 \\
+   1 & 1 \\
+  \end{array} } \right]
+\;\;\;
+  A^t=
+  \left[ {\begin{array}{ccc}
+   -1 & 2 & 1 \\
+   1 & -1 & 1 \\
+  \end{array} } \right]
+\]
+
+
+Taking the matrix $A$ in the example:
+\begin{enumerate}
+\item Can you deduce the sizes of $AA^t$ and $A^tA$ without doing any computation?
+
+\ans $AA^t$ has size $3\times 3$, while $A^tA$ has size $2\times 2$.
+
+\item Compute $AA^t$ and $A^tA$.
+
+\ans 
+
+\[
+AA^t = 
+  \begin{bmatrix}
+  2 & -3  & 0 \\
+  -3 & 5  & 1 \\
+  0 & 1 & 2 
+  \end{bmatrix},
+\;\;\;
+AA^t = 
+  \begin{bmatrix}
+  6 & -2 \\
+  -2  & 3 \\ 
+  \end{bmatrix}
+\]
+
+\item We say that a square matrix $M$ is ``symmetric'' if $A^t = A$. Are $AA^t$ and $A^tA$ symmetric?
+
+\ans Yes, they are. The matrix $AA^t$ represents all the possible products $r_i^t r_j$ where $r_i$ are the 
+rows of $A$.  The matrix $A^t A$ represents all the possible products $c_i^t c_j$ where $c_i$ are the 
+columns of $A$. The symmetry of these matrices is just a consequence of the fact that $v^t w = w^t v$ 
+for any  column vectors $v, w$ of the same size (see exercise below).
+\end{enumerate}
+
+% ----5----
+
+\item
+Given two data vectors $X=(x_1,\ldots,x_n)$ and $Y=(y_1, \ldots, y_n)$ of the same size, we define the mean $\textrm{E}(X)$, 
+variance $\textrm{Var}(X)$ and covariance $\textrm{Cov}(X, Y)$ as:
+\[
+\textrm{E}(X)=\frac{1}{n}\sum_{i=1}^n x_i\;\;\; \textrm{Var}(X)=\frac{1}{n}\sum_{i=1}^n (x_i - E(X))^2
+\]
+\[
+\textrm{Cov}(X, Y) = \frac{1}{n}\sum_{i=1}^n (x_i - E(X)) (y_i - E(Y)).
+\]
+
+Informally, the {\bf mean} embodies the idea of ``center of mass'' of the entries of a vector, the {\bf variance} 
+measures the extent to which a set of values tends to depart away from their mean; the {\bf covariance}
+measures the extent to which two collections of values tend to depart from the respective means concordantly.
+
+Given the following dummy data table:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & $X$ & $Y$ & $Z$   \\
+\hline
+sample 1 &  -1  & 3  & 5 \\
+sample 2 &  0 &   6 & 3 \\
+sample 3 &  1 &   9 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item Compute $\textrm{E}(X)$, $\textrm{E}(Y)$ and $\textrm{E}(Z)$.
+
+\ans $\textrm{E}(X)=0$, $\textrm{E}(Y)=6$, $\textrm{E}(Z)=3$.
+
+\item Compute $\textrm{Var}(X)$, $\textrm{Var}(Y)$ and $\textrm{Var}(Z)$.
+
+\ans $\textrm{Var}(X) = 1/3 (1^2 + 1^2) = 2/3$, $\textrm{Var}(Y)=1/3 (3^2 + 3^2) = 6$, $\textrm{Var}(Z)=1/3 (2^2 + 2^2) = 8/3$.
+
+\item Compute $\textrm{cov}(X, Y)$.
+
+\ans $\textrm{cov}(X, Y) = 1/3 \left[(-1) \cdot (-3) + 0\cdot 0 + 1\cdot 3\right]= 2$ 
+
+\item Let
+\[
+\textbf{1}=\left[
+{\begin{array}{c}
+   1 \\
+   1 \\
+   1
+\end{array} } \right]
+\]
+Compute $\textbf{1}\textbf{1}^t$.
+
+\ans 
+
+\[ 
+\textbf{1}\textbf{1}^t=
+  \begin{bmatrix}
+  1 & 1 & 1 \\
+  1 & 1 & 1 \\
+  1 & 1 & 1 \\  
+  \end{bmatrix}
+\]
+
+\item
+Let
+\[
+Y=\left[
+{\begin{array}{c}
+   3 \\
+   6 \\
+   9
+\end{array} } \right]
+\]
+and define a new vector
+\[
+C_Y= Y - \textrm{E}(Y)\textbf{1}.
+\]
+Compute $\textrm{E}(C_Y)$.
+
+\ans $\textrm{E}(C_Y) = \textrm{E}(Y - \textrm{E}(Y)\textbf{1}) = \textrm{E}(Y) - \textrm{E}(\textrm{E}(Y)\textbf{1}) = \textrm{E}(Y) - \textrm{E}(Y) = 0$.
+
+\item Let
+\[
+C_3 = I_3 - \frac{1}{3}\textbf{1}\textbf{1}^t,
+\]
+where $I_3$ is the $3\times 3$ identity matrix. Compute $C_3$. Check that $C_3 Y = C_Y$. Can you guess why the matrix $C_3$ is known 
+as the ``centering matrix'' of $\R^3$?
+
+\ans
+\[
+C_3 = 
+\begin{bmatrix}
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1   
+  \end{bmatrix}
+- \frac{1}{3}
+\begin{bmatrix}
+  1 & 1 & 1 \\
+  1 & 1 & 1 \\
+  1 & 1 & 1   
+  \end{bmatrix} =
+\begin{bmatrix}
+  2/3 & -1/3 & -1/3 \\
+  -1/3 & 2/3 & -1/3 \\
+  -1/3 & -1/3 & 2/3   
+  \end{bmatrix}.
+\]
+
+It is apparent that the effect of multiplying a column vector by $C_n$ is to center all its entries at the mean.
+
+\item Let
+\[
+A=\left[
+{\begin{array}{cc}
+   -1 & 3 \\
+   0 & 6 \\
+   1 & 9
+\end{array} } \right].
+\]
+Observed that $A$ encodes the two feature vectors corresponding to $X$ and $Y$ in the dummy table. Compute $B=C_3 A$. Explain in simple terms what is the effect that multiplying by $C_3$ has on $A$.
+
+\ans 
+\[
+B = C_3 A=
+\begin{bmatrix}
+   -1 & -3 \\
+   0 & 0 \\
+   1 & 3
+\end{bmatrix}.
+\]
+
+\item Compute \[ \omega = \frac{1}{3} B^t B.\]
+$\omega$ is known as the ``covariance'' matrix. Discuss whether you see any connections between the entries of $\omega$ 
+and the definitions of {\bf variance} and {\bf covariance} above.
+
+\ans
+\[
+\omega =\frac{1}{3} B^t B= 
+\frac{1}{3}
+\begin{bmatrix}
+   2 & 6 \\
+   6 & 18 \\
+\end{bmatrix} = 
+\begin{bmatrix}
+   2/3 & 2 \\
+   2 & 6 \\
+\end{bmatrix}.
+\]
+
+It turns out that $\omega_{11} = \textrm{Var}(X)$, $\omega_{12} =  \omega_{21} = \textrm{Cov}(X, Y)$, and $\omega_{22} = \textrm{Var}(Y)$.
+
+
+\end{enumerate}
+
+% ----6----
+
+\item
+The length of a vector
+\[
+v =  \left[ {\begin{array}{c}
+v_1 \\
+\vdots \\
+v_n \\
+\end{array} } \right]\in\R^n
+\] denoted $\|v\|$, can be defined as $\| v \| = \sqrt{v^tv}$
+
+\begin{enumerate}
+\item Compute the lengths of $v=(1,1,0)$ and $w=(1,2,0)$, respectively.
+
+\ans $\| v \| = \sqrt{1^2 + 1^2} = \sqrt{2}$,  $\| w \| = \sqrt{1^2 + 2^2} = \sqrt{5}$.
+
+\item Find a scalar $\alpha\in\R$ such that $\| \alpha v\| = 1$. Do the same for $w$.
+
+\ans Notice that in general $\|\alpha v\| = \sqrt{\alpha^2} \|v\| = |\alpha| \|v\|$. 
+For $v$, $\alpha_v = 1 / \| v \| = 1 / \sqrt{2}$ is one possible solution.
+The same for $w$, $\alpha_w=1/\|w\| = 1/\sqrt{5}$ is one possible solution.
+Are there any other solutions?
+
+\item Observe that given two vectors $v, w \in \R^n$ then $v^tw=w^tv$. Can you explain why?
+
+\ans Both expressions yield the following scalar:
+
+\[
+\sum_{i=1}^n v_i w_i.
+\]
+
+\item We say that two vectors $v, w \in \R^n$ are orthogonal whenever $v^tw=0$. 
+Given
+\[
+v =  \left[ {\begin{array}{c}
+1 \\
+0 \\
+-2 \\
+\end{array} } \right]\in\R^n
+\]
+find two linearly independent vectors $w_1$ and $w_2$ such that both are orthogonal to $v$.
+
+\ans In this exercise we are bound to find vectors $w=(a, b, c)$ such that
+
+\[
+a - 2 c = 0.
+\]
+
+We can provide any such vector with the constraint $a = 2c$. One simple solution is to make $a=c=0$ and choose any $b\neq 0$, like $(0,1,0)$.
+Now, if we can given another non-zero solution with  $b\neq 0$ we would have produced two linearly independent vectors that fulfill the 
+orthogonality requirement. In fact, we could take $b=0$ and $a \neq 0$, for instance, $a=2$, then $c = 1$. In summary, we could just give
+$w_1 = (2, 0, 1)$ and $w_2 = (0, 1, 0)$. 
+
+\end{enumerate}
+
+
+%---bonus-problem---
+
+\item {\bf (Bonus Track)} Given the binary data $D = \{(x_i, y_i) \;|\; x_i, y_i\in\{0,1\}, i=1, \ldots, N\}$ we can fit 
+a logistic regression model by maximizing the following log-likelihood function:
+\[
+\mathcal{L}(a, b) = \sum_{i=1}^N  -(ax_i + b) + (ax_i + b)y_i - \log(1 + e^{-(ax_i + b)})
+\]
+where $a, b\in\R$ are the parameters of the model; in other words, solving the following optimization problem:
+\(
+\hat{a}, \hat{b} = \textrm{argmax}_{a, b} \mathcal{L}(a, b).
+\)
+In this exercise we are tackling this problem. For this purpose, recall that the binary data $D$ can 
+also be specified as a contingency table:
+\begin{center}
+\begin{tabular}{ll|c|c|c}
+\cline{3-4}
+                                         &   & \multicolumn{2}{c|}{\bf y} &  \\ \cline{3-4}
+                                         &   & 0          & 1         &  \\ \cline{1-4}
+\multicolumn{1}{|c|}{\multirow{2}{*}{\bf x}} & 0 & $n_{00}$  & $n_{01}$ &  \\ \cline{2-4}
+\multicolumn{1}{|c|}{}                   & 1 & $n_{10}$  & $n_{11}$ &  \\ \cline{1-4}
+
+\end{tabular}
+\end{center}
+where each $n_{ij}\in\N$ represents the count of data points that meet each of the four 
+possible configurations for $(x_i, y_i)$ in $D$: $(0, 0)$, $(1, 0)$, $(0, 1)$ and $(1, 1)$.  
+
+\begin{enumerate}
+\item Prove the following identity: 
+\[
+\frac{\partial \mathcal{L}}{\partial a} = \sum_{i=1}^N x_i \left[y_i - \frac{e^{ax_i + b}}{1 + e^{ax_i + b}}\right].
+\]
+\item Prove the following identity:
+\[
+\frac{\partial \mathcal{L}}{\partial b} = \sum_{i=1}^N \left[y_i - \frac{e^{ax_i + b}}{1 + e^{ax_i + b}}\right].
+\]
+\item Write $\partial \mathcal{L}/\partial a$ as a function of $a$, $b$ and the $n_{ij}$.
+\item Write $\partial \mathcal{L}/\partial b$ as a function of $a$, $b$ and the $n_{ij}$.
+\item Give an expression for the only critical point ($\hat{a}, \hat{b})$ of $\mathcal{L}$ as a function of the $n_{ij}$.
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+\end{document}
+
+

@@ -10,8 +10,7 @@ tags:
 
 ## Task description
 
-* You will be producing a short video lecture addressed to your peers in which you present a problem that has been worked out by someone else, 
-and provide a digest of their solution to the problem.
+* You will be producing a short video lecture addressed to your peers in which you will present a problem that has been worked out by someone else, and provide a digest of their solution to the problem.
 
 * Below I am proposing you a bunch of papers to work on. You will choose one and work with it for the entire task.
 
@@ -23,7 +22,9 @@ and provide a digest of their solution to the problem.
 
 * Your main goal is that your audience learns not only about the main findings of the work, but also about the key ideas playing a role behind the solution. In particular, you may not shy away from presenting some level of detail when you feel that they are justified.
 
-* The short video lecture will span no more than 10 minutes and you can present with graphical support such as slides or by making use of a whiteboard.
+* The short video lecture will span no more than 10 minutes and you can present with graphical support such as slides or by making use of a whiteboard. 
+
+* The recommended tool to do so is OBS: [https://obsproject.com/](https://obsproject.com/)
 
 * In your short video lecture you must address the following questions:
 
@@ -44,11 +45,11 @@ and provide a digest of their solution to the problem.
 
 * You will work individually.
 
-* You must inform everybody which paper you will be working on: we will do so using a wiki in the Aula Global of the course.
+* You must inform the teacher which paper you will be working on: we will do so using a wiki in the Aula Global of the course.
 
 * You are allowed to work on the same paper another colleague is working on. 
 
-* Do not read aloud or copy excerpts from the source verbatim.
+* Please, do not read aloud or copy excerpts from the source verbatim.
 
 
 
@@ -75,25 +76,29 @@ and provide a digest of their solution to the problem.
 # Papers
 
 
+- Wang, Y., Hicks, S.C., Hansen, K.D. Addressing the mean-correlation relationship in co-expression analysis. PLoS Comput Biol 18(3) (2022)
+
 - Lal, A., Liu, K., Tibshirani, R., Sidow, A. & Ramazzotti, D. De novo mutational signature discovery in tumor genomes using SparseSignatures. PLOS Computational Biology 17, e1009119 (2021).
 
 - Gemp, I., McWilliams, B., Vernade, C. & Graepel, T. Eigengame: PCA as a Nash equilibrium. ICLR 2021 (2021).
 
-- Parsana, P., Ruberman, C., Jaffe, A.E., Schatz, M.C., Battle, A., and Leek, J.T. (2019). Addressing confounding artifacts in reconstruction of gene co-expression networks. Genome Biology 20, 94.
+- Frazer, J., Notin, P., Dias, M. et al. Disease variant prediction with deep generative models of evolutionary data. Nature 599, 91–95 (2021).
 
-- McGinnis, C.S., Murrow, L.M., and Gartner, Z.J. (2019). DoubletFinder: Doublet Detection in Single-Cell RNA Sequencing Data Using Artificial Nearest Neighbors. Cell Systems 8, 329-337.e4.
+- Lundberg, S.M., Erion, G., Chen, H. et al. From local explanations to global understanding with explainable AI for trees. Nat Mach Intell 2, 56–67 (2020).
 
-- Plaut, E. (2018). From Principal Subspaces to Principal Components with Linear Autoencoders. ArXiv:1804.10253. 
+- Tsuyuzaki, K., Sato, H., Sato, K. et al. Benchmarking principal component analysis for large-scale single-cell RNA-sequencing. Genome Biol 21, 9 (2020).
+
+- Parsana, P., Ruberman, C., Jaffe, A.E., et al. Addressing confounding artifacts in reconstruction of gene co-expression networks. Genome Biology 20, 94 (2019).
+
+- Plaut, E. From Principal Subspaces to Principal Components with Linear Autoencoders. ArXiv:1804.10253 (2018). 
 
 - Field, A. E. et al. DNA Methylation Clocks in Aging: Categories, Causes, and Consequences. Molecular Cell 71, 882–895 (2018).
 
 - Ma, J., Yu, M., Fong, S. et al. Using deep learning to model the hierarchical structure and function of a cell. Nat Methods 15, 290–298 (2018).
 
-- Ionita-Laza, I., McCallum, K., Xu, B. & Buxbaum, J. D. A spectral approach integrating functional genomic annotations for coding and noncoding variants. Nat Genet 48, 214–220 (2016).
+- Martincorena, I., Raine, K.M., Gerstung, M., et al. Universal Patterns of Selection in Cancer and Somatic Tissues. Cell 171(5) (2017).
 
 - Williams, M., Werner, B., Barnes C., Graham, T., Sottoriva, A. (2016) Identification of neutral tumor evolution across cancer types. Nature Genetics 48 (3).
-
-- Hart, Y., Sheftel, H., Hausser, J., Szekely, P., Ben-Moshe, N.B., Korem, Y., Tendler, A., Mayo, A.E., and Alon, U. (2015). Inferring biological tasks using Pareto analysis of high-dimensional data. Nature Methods 12, 233–235.
 
 - Clark, N.R., Hu, K.S., Feldmann, A.S. et al. The characteristic direction: a geometrical approach to identify differentially expressed genes. BMC Bioinformatics 15, 79 (2014).
 
@@ -102,12 +107,6 @@ and provide a digest of their solution to the problem.
 - Strino, F., Parisi, F., Micsinai, M., Kluger, Y. (2013) TrAp: a tree approach for fingerprinting subclonal tumor composition. Nucleic Acids Research 41 (17) 
 
 - Alexandrov, L. B., Nik-Zainal, S., Wedge, D. C., Campbell, P. J. & Stratton, M. R. Deciphering signatures of mutational processes operative in human cancer. Cell Rep. 3, 246–259 (2013).
-
-- Leek JT, Johnson WE, Parker HS, Jaffe AE, Storey JD. 2012. The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics 28.6: 882–883.
-
-- Langfelder, P. & Horvath, S. WGCNA: an R package for weighted correlation network analysis. BMC Bioinformatics 9, 559 (2008).
-
-- Teschendorff, A. E., Journée, M., Absil, P. A., Sepulchre, R. & Caldas, C. Elucidating the altered transcriptional programs in breast cancer using independent component analysis. PLoS Comput. Biol. 3, e161 (2007).
 
 - Zou, H. and Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society, Series B. 67: pp. 301–320.
 

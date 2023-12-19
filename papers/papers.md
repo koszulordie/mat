@@ -41,6 +41,7 @@ tags:
     * Have these ideas been tried before in this or a similar context?
 
 
+
 ## Formal requirements
 
 * You will work individually.
@@ -55,7 +56,8 @@ tags:
 
 ## Deadline
 
-* 23rd December 23:59
+* 30th December 23:59
+
 
 
 ## Evaluation criteria
@@ -69,8 +71,6 @@ tags:
 * Capacity to scrap the literature and validate new knowledge by yourself
 
 * Critical thinking
-
-* Tidiness of content
 
 
 # Papers

@@ -47,17 +47,18 @@ Evaluation will have two components:
 Weighting: 30% (1) + 70% (2)
 
 # Exercises with answers
+1. [Final test - Fall 2023]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2023.pdf %})
+2. [Final test - Fall 2022]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2022.pdf %})
+3. [Final test - Fall 2021 - 1st round]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2021-1.pdf %})
+4. [Final test - Fall 2021 - 2nd round]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2021-2.pdf %})
+5. [Mid term deliverable - Fall 2019]({{ site.baseurl }}{% link solved-exercises/mid-term-deliverable-2019.pdf %})
 
-1. [Final test - Fall 2022]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2022.pdf %})
-2. [Final test - Fall 2021 - 1st round]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2021-1.pdf %})
-3. [Final test - Fall 2021 - 2nd round]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2021-2.pdf %})
-4. [Mid term deliverable - Fall 2019]({{ site.baseurl }}{% link solved-exercises/mid-term-deliverable-2019.pdf %})
 
 # Teachers
 
 **Ferran Muiños** will act as course coordinator. You can check his publications [here](https://scholar.google.es/citations?user=PujyjakAAAAJ&hl=en).
 
-**Paula Gomis** will act as invited speaker and teaching assistant for the tutorials. 
+**Paula Gomis** will act as invited speaker and teaching assistant. 
 
 Both are alumni of the master.
 

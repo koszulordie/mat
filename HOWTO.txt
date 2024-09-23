@@ -1,4 +1,22 @@
-# Running website locally with jekyll
+# Run
+
+$ ~/ruby-3.0.0/bin/bundle exec ~/ruby-3.0.0/bin/jekyll serve
+
+# Install
+
+## install ruby-build and use it to install ruby: https://github.com/rbenv/ruby-build
+
+$ ruby-build 3.0.0 ~/ruby-3.0.0/
+
+$ ~/ruby-3.0.0/bundle update
+
+$ ~/ruby-3.0.0/gem update
+
+$ ~/ruby-3.0.0/bundle install
+
+$ ~/ruby-3.0.0/gem install jekyll
+
+# Legacy install and run Running website locally with jekyll
 
 1. Install ruby
 
@@ -10,4 +28,4 @@ https://docs.github.com/en/enterprise/2.14/user/articles/setting-up-your-github-
 
 3. Run static website locally
 
-bundle exec jekyll serve
+$ bundle exec jekyll serve

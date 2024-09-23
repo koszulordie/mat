@@ -7,7 +7,7 @@
 Welcome to the supporting website for the **Elements of Mathematics** course of the [Master in
  Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics). 
  
-# Fall 2023-2024
+# Fall 2024-2025
 
 {% assign sorted = site.posts | sort: 'date' %}
 <ul>
@@ -20,33 +20,33 @@ Welcome to the supporting website for the **Elements of Mathematics** course of 
 
 # Timetable
 
-Check the [official timetable](https://gestioacademica.upf.edu/pds/consultaPublica/look[conpub]InicioPubHora?entradaPublica=true&lock=true&@f7e536bed26c009727edf24c0a583d66=@9bee282a7d8e0091&@dee7125d9d9a52ef82586f940dcf3109=@12271687f1f1213a) for the fall 2023 term.
+Check the [official timetable](https://gestioacademica.upf.edu/pds/consultaPublica/look[conpub]InicioPubHora?entradaPublica=true&lock=true&@f7e536bed26c009727edf24c0a583d66=@9bee282a7d8e0091&@dee7125d9d9a52ef82586f940dcf3109=@a3a7cc8f909e99d7) for the fall 2024 term.
 
 # Content
 
-Each session has its own page including the syllabus and additional content to be watched/read.
+Each session has its own page including a detailed syllabus and additional content to watch/read.
 
-Sessions will be ~2h covering a bunch of related topics. To make the most out of each session it would be beneficial to have a look at the content supplied before the session takes place.
+Sessions will have a duration of 2h with a break between 1st and 2nd hour. To make the most out of each session it would be beneficial that the students have a look at the web content of each session before the session takes place.
 
 ## Aim
 
 The sessions will serve several purposes:
 
-1. Present fundamental concepts
-2. Live exercise solving
+1. Present fundamental concepts: definitions, examples and main theoretical results
+2. Solving exercises
 3. Q&A
-4. Run tutorials
+4. Do hands-on tutorials
 
 # Evaluation
 
 Evaluation will have two components:
 
-1. [Paper digest]({{ site.baseurl }}{% link papers/papers.md %})
-2. Final test
+<!-- 1. [Integrative work]({{ site.baseurl }}{% link papers/papers.md %}) -- at most 30% of the grade -->
+1. Integrative work -- at most 30% of the grade
+2. Final test -- at least 70% of the grade
 
-Weighting: 30% (1) + 70% (2)
 
-# Exercises with answers
+# Tests from previous courses
 1. [Final test - Fall 2023]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2023.pdf %})
 2. [Final test - Fall 2022]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2022.pdf %})
 3. [Final test - Fall 2021 - 1st round]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2021-1.pdf %})
@@ -56,11 +56,10 @@ Weighting: 30% (1) + 70% (2)
 
 # Teachers
 
-**Ferran Muiños** will act as course coordinator. You can check his publications [here](https://scholar.google.es/citations?user=PujyjakAAAAJ&hl=en).
+**Ferran Muiños** course coordinator. You can check his publications in [mathematics](https://zbmath.org/?q=au%3AFerran+Mui%C3%B1os) and [biology](https://pubmed.ncbi.nlm.nih.gov/?term=Ferran+Muin%CC%83os%5BAuthor%5D&sort=date).
 
-**Paula Gomis** will act as invited speaker and teaching assistant. 
+**Paula Gomis** will act as invited speaker and teaching assistant for the hands-on sessions.
 
-Both are alumni of the master.
 
 # References
 
@@ -75,19 +74,19 @@ Grant Sanderson.
 **[Steve Brunton's YouTube Channel](https://www.youtube.com/channel/UCm5mt-A4w61lknZ9lCsZtBw).**
 Steve Brunton.
 
-**[A friendly introduction to linear algebra for Machine Learning](https://www.youtube.com/watch?v=LlKAna21fLE).**
-Tai Danae Bradley. TensorFlow ML Tech Talks.
-
-**[The Art of Linear Algebra](https://github.com/kenjihiranabe/The-Art-of-Linear-Algebra).**
-Kenji Hiranabe.
-
 **Infinite Powers: How Calculus Reveals the Secrets of the Universe.**
 Steven Strogatz. Houghton Mifflin Harcourt, 2019.
 
-## Miscelanea
+## Somewhat related miscelanea
 
 **[Yann LeCun’s Deep Learning Course at CDS](https://cds.nyu.edu/deep-learning/).**
 Yann LeCun, Alfredo Canziani.
 
 **[Introduction to Linear Algebra for Applied Machine Learning with Python](https://pabloinsente.github.io/intro-linear-algebra).**
 Pablo Cáceres.
+
+**[A friendly introduction to linear algebra for Machine Learning](https://www.youtube.com/watch?v=LlKAna21fLE).**
+Tai Danae Bradley. TensorFlow ML Tech Talks.
+
+**[The Art of Linear Algebra](https://github.com/kenjihiranabe/The-Art-of-Linear-Algebra).**
+Kenji Hiranabe.

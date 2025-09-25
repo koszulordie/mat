@@ -18,15 +18,11 @@ Welcome to the supporting website for the **Elements of Mathematics** course of 
   {% endfor %}
 </ul>
 
-# Timetable
-
-Check the [official timetable](https://gestioacademica.upf.edu/pds/consultaPublica/look[conpub]InicioPubHora?entradaPublica=true&lock=true&@f7e536bed26c009727edf24c0a583d66=@9bee282a7d8e0091&@dee7125d9d9a52ef82586f940dcf3109=@a3a7cc8f909e99d7) for the fall 2024 term.
-
 # Content
 
 Each session has its own page including a detailed syllabus and additional content to watch/read.
 
-Sessions will have a duration of 2h with a break between 1st and 2nd hour. To make the most out of each session it would be beneficial that the students have a look at the web content of each session before the session takes place.
+Sessions will have a duration of ~2h with a break between 1st and 2nd hour. To make the most out of each session it would be beneficial that the students have a look at the web content of each session before the session takes place.
 
 ## Aim
 

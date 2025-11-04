@@ -1,0 +1,545 @@
+---
+title: "Projections Onto Subspaces"
+author: "Ferran Muiños, Ramon Massoni-Badosa and Paula Gomis"
+output: 
+  BiocStyle::html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: hide
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introduction and objectives
+
+In this hands-on session, we will review the concept of projections onto vector subspaces. Specifically, we aim to achieve the following objectives:
+
+1. Use orthogonal projections to find the best approximation to a solution for general systems of linear equations of the form $Ax = b$ with no solution. 
+2. Understand this problem both algebraically and geometrically. For the latter we will use the power of [Shiny apps](https://shiny.rstudio.com/).
+3. Find the least squares regression solution line for $n$ points in $\mathbb{R}^2$ using the concepts explained in this session. Least squares is a real-world, pervasive application of linear algebra.
+4. Learn to use [tidyverse](https://www.tidyverse.org/) and in particular [ggplot2](https://ggplot2.tidyverse.org/) to obtain publication-quality graphics. 
+
+
+# Disclaimer
+
+This hands-on session comprises some challenging concepts. We believe that all the students at your level are able to grasp them with time and dedication, but it would also be within the expected if you don't finish this document or don't understand everything in the classroom. You will have this document for you to study after the class and we will be available to answer any questions.
+
+
+# Description of the problem
+
+We want to find the best approximation to the solution for a system of linear equations $Ax = b$ that has no proper, exact solution in the traditional sense. We can approach this problem from two different perspectives, which master Gilbert Strang refers to as the "row and column pictures" of a system of equations.
+
+
+## Row picture
+
+Let us illustrate the problem with the following system of equations:
+
+```{r echo=FALSE}
+system_equations <- noquote(paste(expression("x=6\\\\x+y=0\\\\x+2y=0")))
+```
+
+$$
+\begin{cases} `r system_equations` \end{cases}
+$$
+
+Which can be represented in matrix form as:
+
+$$
+Ax = b
+$$
+
+```{r echo=FALSE}
+A <- matrix(c(1, 1, 1, 0, 1, 2), nrow = 3, ncol = 2, byrow = FALSE)
+x <- matrix(c("x", "y"), nrow = 2)
+b <- matrix(c(6, 0, 0), nrow = 3)
+write_matex2 <- function(x) {
+  begin <- "\\begin{bmatrix}"
+  end <- "\\end{bmatrix}"
+  X <-
+    apply(x, 1, function(x) {
+      paste(
+        paste(x, collapse = "&"),
+        "\\\\"
+      )
+    })
+  paste(c(begin, X, end), collapse = "")
+}
+```
+
+
+$$
+`r write_matex2(A)` `r write_matex2(x)` = `r write_matex2(b)`
+$$
+
+Where $A$ is the **coefficient matrix**, $x$ is the vector that contains the **unknowns** and $b$ is the vector that contains the **constants**. 
+
+Geometrically, the row picture tells us that a system of linear equations has no solution if all the lines specified by the equations do not meet in a single point:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+df <- as.data.frame(A)
+ggplot(df) +
+  geom_vline(xintercept = 6, color = "red") +
+  geom_abline(intercept = 0, slope = -1, color = "blue") +
+  geom_abline(intercept = 0, slope = -0.5, color = "green") +
+  geom_vline(xintercept = 0, color = "black", size = 0.25) +
+  geom_hline(yintercept = 0, color = "black", size = 0.25) +
+  annotate("text", x = 6, y = 8, hjust = 1.2, label = "x = 6", size = 5, color = "red") +
+  annotate("text", x = -6, y = 6.3, hjust = -0.2, label = "y = -x", size = 5, color = "blue") +
+  annotate("text", x = -7, y = 2, hjust = 0.2, label = "y = -1/2x", size = 5, color = "green") +
+  scale_x_continuous("x", limits = c(-10, 10), breaks = seq(-10, 10, by = 2))+
+  scale_y_continuous("y", limits = c(-10, 10), breaks = seq(-10, 10, by = 2)) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 13, face = "bold"))
+```
+
+This is typically the case in **systems of linear equations with more equations than unknowns**. We can think of these as systems with "tall and thin matrices" (more rows than columns). 
+
+The term "row picture" is reminiscent of the fact that each row of the system represents an equation and every linear equation in the plane has typically not just one but many --a straight line of-- solutions.
+
+
+## Column picture
+
+Understanding $Ax = b$ using the column picture is the ultimate goal of linear algebra. We do not think of equations and unknowns anymore. Instead, we represent the equations as a matrix-vector multiplication:
+
+$$
+Ax = b
+$$
+
+We can think of the vector $b$ as a linear combination of the column vectors of A. The scalars of this linear combinations are the elements of the vector $x$. 
+
+
+
+<!-- * The matrix $A$ specifies two column vectors ($a_1$ and $a_2$). All the possible linear combinations of $a_1$ and $a_2$ (their span) are collectively known as the column space of $A$, or $C(A)$. -->
+<!-- * The elements of $x$ ($x_1$ and $x_2$ hereafter) specify which linear combination of $a_1$ and $a_2$ to take. The vector $b$ specifies the result of a specific choice of $x$. -->
+
+<!-- The algebraic interpretation of the column picture of the previous example is the following: -->
+
+Considering our system of linear equations we have:
+
+```{r echo=FALSE}
+a1 <- matrix(c(1, 1, 1), nrow = 3)
+a2 <- matrix(c(0, 1, 2), nrow = 3)
+x <- matrix(c("x_1", "x_2"), nrow = 2)
+b <- matrix(c(6, 0, 0), nrow = 3)
+```
+
+
+$$
+`r write_matex2(A)` `r write_matex2(x)` = `r write_matex2(b)`
+$$
+
+$$
+x_1 `r write_matex2(a1)` + x_2 `r write_matex2(a2)` = `r write_matex2(b)`
+$$
+*Remember that the column space of $A$ is the vector space generated by the
+columns of $A$ considered as vectors. 
+
+Thus, $Ax = b$ has no proper solution in the traditional sense whenever $b$ is not contained in $C(A)$. In other words, there is no two $x_1$ and $x_2$ that specify a linear combination of $a_1$ and $a_2$ that produces $b$. 
+
+**Exercise**
+
+To geometrically visualize this, enter the shiny app associated with this tutorial by clicking the following link or copying it into your browser:
+
+[https://massonix.shinyapps.io/projections_onto_subspaces/](https://massonix.shinyapps.io/projections_onto_subspaces/)
+
+Then, in the left hand side of the app enter the matrix $A$ and the vector $b$. The app will render a visualization of **$C(A)$ as a plane** in $\mathbb{R}^3$, and **$b$ as a vector** in $\mathbb{R}^3$, which need not be contained in the plane.
+
+
+# Solving the problem
+
+As we have seen above, in our system of linear equations, there is in general no vector $x$ that will provide a proper solution of $Ax = b$ in the traditional sense. However, we can provide "the best solution we can" by finding $\widehat{x}$ such that vector $p = \widehat{x}_1 a_1 + ··· + \widehat{x}_n a_n$  is **as close as possible to the vector b**. 
+
+To make the "as close as possible" more precise, we will consider the closest vector to $b$ that belongs to the column space $C(A)$ by moving perpendicularly with respect to $C(A)$, i.e., $p=p(b)$ will be the vector obtained with an orthogonal projection of $b$ onto $C(A)$. You can visualize this in the shiny app. 
+
+As $p(b)$ is in $C(A)$, we can find a vector $\widehat{x}$ that solves the new system:
+
+$$
+A\widehat{x} = p(b)
+$$
+
+
+We will first find $\widehat{x}$, and then we will calculate $p(b)$, that is the projection of $b$ onto the column space $C(A)$.
+
+We can also calculate the projection matrix $P$ that projects any vector onto the column space $C(A)$.
+
+
+## Find $\widehat{x}$
+
+
+
+We have seen that, if $p(b)$ is the projection of $b$ onto the column space $C(A)$, then $p(b)-b$ belongs to the orthogonal space  of $C(A)$, which is the same as the null space of the transpose  of $A$, i.e, $N(A^t)$ (see the chapter 5 of the course notes).
+
+&nbsp;
+
+
+$$
+p(b) - b = A\widehat{x}-b \hspace{0.1cm} \textrm{ belongs to } C(A)^\perp =  N(A^t) 
+$$
+means that:
+
+$$
+A^t(A\widehat{x}-b)=\vec{0}
+$$
+
+&nbsp;
+
+Let us distribute $A^t$:
+
+$$
+A^t A\widehat{x}-A^tb = 0 \hspace{0.1cm}  \Longrightarrow \hspace{0.1cm} A^t A\widehat{x} = A^tb 
+$$
+
+
+
+We know that the symmetric matrix $A^tA$ is invertible if the column vectors are linearly independent. If that's the case, we can multiply both sides by $(A^tA)^{-1}$ and isolate $\widehat{x}$:
+
+$$
+(A^t A)^{-1}( A^t A)\widehat{x} = (A^t A)^{-1} A^tb 
+$$
+$$
+\textrm{Id }\widehat{x} = (A^t A)^{-1} A^tb 
+$$
+
+
+$$
+\widehat{x} = (A^t A)^{-1} A^tb
+$$
+
+
+
+
+
+
+
+
+Let us apply this formula to the example above. To make computations easier, we will use the operations in R that we learned in the previous hands-on session. First, we compute $A^tA$:
+
+```{r}
+A <- matrix(c(1, 1, 1, 0, 1, 2), nrow = 3, ncol = 2, byrow = FALSE)
+AT_A <- t(A) %*% A
+AT_A
+```
+
+
+$$
+A^tA = `r write_matex2(t(A))` `r write_matex2(A)` = `r write_matex2(AT_A)`
+$$
+
+Now we find the inverse $(A^t A)^{-1}$:
+
+```{r message=FALSE, warning=FALSE}
+library(matlib)
+library(MASS)
+AT_A_inv <- inv(AT_A)
+AT_A_inv <- fractions(AT_A_inv)
+AT_A_inv
+```
+
+$$
+(A^t A)^{-1} = \begin{bmatrix} 
+5/6 & -1/2\\
+-1/2 & 1/2
+\end{bmatrix}
+$$
+
+Finally, we can solve for $\widehat{x} = (A^t A)^{-1} A^tb$:
+
+```{r}
+b <- matrix(c(6, 0, 0), nrow = 3)
+x_hat <- AT_A_inv %*% t(A) %*% b
+x_hat
+```
+
+$$
+\widehat{x} = (A^t A)^{-1} A^tb = \begin{bmatrix} 5/6 & -1/2\\ -1/2 & 1/2 \end{bmatrix} `r write_matex2(t(A))` `r write_matex2(b)` = \begin{bmatrix} 5 \\ -3 \end{bmatrix}
+$$
+
+
+
+## Find $p(b)$
+
+Let us find $p(b)$, which is the projection of $b$ onto $C(A)$:
+
+$$
+p(b) = A \widehat{x} = A (A^t A)^{-1} A^tb
+$$
+
+```{r}
+p <- A %*% x_hat
+p
+```
+
+$$
+p(b) = `r write_matex2(A)` \begin{bmatrix} 5 \\ -3 \end{bmatrix} = \begin{bmatrix} 5 \\ 2 \\ -1 \end{bmatrix}
+$$
+
+
+## Find the projection matrix P (optional)
+
+Now we can pursue one more step to find the matrix $P$ encoding the orthogonal projection onto the column space $C(A)$, which describes a linear transformation that takes any vector and projects in onto $C(A)$. 
+
+If we look at what happened with $b$, it is easy to spot the matrix that did the job: $P = A (A^t A)^{-1} A^t$. 
+
+Projection matrices have two interesting properties:
+
+1. They are symmetric
+
+$$
+P^t = P
+$$
+
+2. If you square them, you get $P$
+
+$$
+P^2 = P
+$$
+
+Can you guess why? 
+
+**Hint:** 
+
+- Try to calculate the transpose matrix of $P = A (A^t A)^{-1} A^t$.
+- Think about what happens if you project the vector $p$ again onto $C(A)$.
+
+
+# Introduction to dplyr and ggplot2
+
+In this session we move our focus from matrices to dataframes. Remember that dataframes are data structures that are 2 dimensional (tabular) and heterogeneous (can handle numerics, characters and logicals together). Intuitively, you can think of them as spreadsheets.
+
+Here, we will introduce the [tidyverse](https://www.tidyverse.org/). As defined by the authors: "The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures". 
+
+You can learn more about Tidyverse in this [video](https://www.linkedin.com/learning/learning-the-r-tidyverse/what-is-the-tidyverse) and this [link](https://www.storybench.org/getting-started-with-tidyverse-in-r/). There is an [entire book](https://r4ds.hadley.nz/) to learn how to use this ecosystem; which at its core aims to simplify the data analysis life cycle:
+
+![](../img/data_science_workflow.png)
+(Image obtained from [this link](https://r4ds.had.co.nz/explore-intro.html))
+
+In particular, we will focus on two crucial steps: transform and visualize; which are accomplished with the dplyr and ggplot2 packages, respectively.
+
+## Dplyr
+
+To introduce this package, we will work with the iconic [gapminder dataset](https://cran.r-project.org/web/packages/gapminder/readme/README.html), which contains information on population size, gross domestic product (GDP) and life expectancy for each country across several years. 
+
+Let us start by loading it into memory:
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+gapminder <- as.data.frame(gapminder::gapminder)
+head(gapminder)
+tail(gapminder)
+```
+
+Dplyr is centered around 5 verbs:
+
+* `filter()`: get rows that fulfill a specific condition.
+* `select()`: select specific columns.
+* `arrange()`: sort rows in a certain order.
+* `mutate()`: create new variables from existing ones.
+* `summarise()`: collapse many values down to a single one.
+
+All this functions can be used together with the `group_by()` function to apply these verbs grouped by a categorical variable.
+
+In addition, dplyr aims to maximize code readability. To this end, it uses the pipe operator (`%>%`) from the [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) package to create the so-called pipelines.
+![](../img/pipe_maggrittr.png){width=90%}
+(Image obtained from [this link](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html))
+
+You can learn more about dplyr in [this link](https://dplyr.tidyverse.org/).
+
+**Example pipeline:** 
+
+"Starting with the gapminder dataset, filter all rows from 2002, and then select the continent and population columns. With that, group the rows by continent and summarise the dataset to the mean population for each continent. Finally, arrange the results in descending order".
+
+
+```{r}
+pop_by_continent <- gapminder %>%
+  filter(year == "2002") %>%
+  select(continent, pop) %>%
+  group_by(continent) %>%
+  summarise(mean_pop = mean(pop)) %>%
+  arrange(desc(mean_pop))
+pop_by_continent
+```
+As we can see, dplyr makes it easy to translate a thought into clear code.
+
+## ggplot2
+
+The input to ggplot2 is a tidy dataset which is defined by the following properties:
+
+1. Observations are rows.
+2. Variables are columns.
+3. Observational units form a table.
+
+The underlying philosophy of ggplot2 is the grammar of graphics. This grammar entails that plots are formed with several components, whose relationships are structured in a layered hierarchy. 
+
+This hierarchy is better visualized as a pyramid:
+
+![](../img/grammar_of_graphics_pyramid.png)
+
+(Image obtained from [this link](https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149))
+
+The important concept is clearly the **layered hierarchy**, which means that 
+
+1. Some components of the plot are defined first than others, 
+2. The plot is composed one layer at a time. 
+
+The main layers, by order, are the following:
+
+* **Data:** tidy dataframe.
+* **Aesthetics:** this word is a bit confusing at first. Aesthetics refers to every element of the plot that has a sense of "scale", and to which you can assign a variable. 
+<br>Examples: x and y axis, color, shape and size, among others.
+* **Geometric objects** (know as geoms): refers to the type of plot that you want to obtain. <br>Examples: violin plot, box plot, bar plot or scatterplot, among others.
+* **Themes:** controls the styling of the plot. 
+<br>Examples: fontsize, width of the axis, etc.
+
+As an example, using the same dataset as in the previous example, we can plot the correlation between life expectancy and GDP for each country by using the functions [geom_point](https://ggplot2.tidyverse.org/reference/geom_point.html) and [geom_smooth](https://ggplot2.tidyverse.org/reference/geom_smooth.html):
+
+
+```{r message=FALSE, warning=FALSE}
+gapminder_2002 <- gapminder %>%
+  filter(year == 2002)
+gapminder_2002 %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "black") +
+    scale_x_log10() +
+    labs(x = "Income", y = "Life Expectancy") +
+    theme_classic()
+```
+
+
+# Least Squares exercise
+
+**Exercise:**
+
+Use the tools that we have seen until now to:
+
+1. Find the slope and the $y$-intercept of the least squares regression line between Life Expectancy ~ Income from the gapminder data set, i.e, find $m$ and $n$ such that 
+$$
+y = mx+n
+$$ 
+the least squares regression line that approximates the Life Expectancy ($y$) given the Income ($x$). 
+2. Using **ggplot**, plot the regression line defining manually the parameters calculated in (1) and check that they are the same.
+
+Hereafter, we will develop the reasoning and solution for this exercise. You are all highly encouraged to try the problem on your own and then compare the results. Otherwise, you can follow our explanation, and try to code each chunk by yourself before looking at ours.
+
+**Solution**
+
+First, we will subset the dataframe to keep only the variables of interest (life expectancy, income and country). Then we will visualize the first 3 rows with the `head()` function:
+
+
+```{r}
+# Visualize the structure of the dataframe
+str(gapminder::gapminder)
+
+
+# Character subsetting
+gapminder_sub <- gapminder_2002[, c("country", "lifeExp", "gdpPercap")]
+head(gapminder_sub, 3)
+```
+
+Note that the gdpPercap in the previous scatter plot is in logarithmic scale. Let us log-transform it:
+
+<!-- For future version of this document change the next commands with dplyr mutate function.  -->
+
+```{r}
+gapminder_sub$log10_gdpPercap <- log10(gapminder_sub$gdpPercap)
+head(gapminder_sub, 3)
+```
+
+
+Our purpose is to fit a line in the form of 
+
+$$
+lifeExp = m · \log_{10}(gdpPercap) + n,
+$$
+
+where *lifeExp* (life expectancy) is the dependent (or response) variable, *gdpPercap* (per-capita Gross domestic product) is the independent (or explanatory) variable, $m$ is the slope and $n$ is the $y$-intercept. 
+
+Hence, if we represent each of the rows of the previous `head` in this form, we would get the following toy system of linear equations:
+
+```{r echo=FALSE}
+system_equations2 <- noquote(paste(expression("2.86m+n=42.19\\\\3.66m+n=75.65\\\\3.72m+n=70.99")))
+```
+
+$$
+\begin{cases} `r system_equations2` \end{cases}
+$$
+
+Which from the column perspective we would express in $Ax = b$:
+
+```{r echo=FALSE}
+A <- matrix(c(2.86, 3.66, 3.72, 1, 1, 1), nrow = 3, ncol = 2, byrow = FALSE)
+x <- matrix(c("m", "n"), nrow = 2)
+b <- matrix(c(42.19, 75.65, 70.99), nrow = 3)
+```
+
+
+$$
+`r write_matex2(A)` `r write_matex2(x)` = `r write_matex2(b)`
+$$
+
+In our real problem, we have $`r nrow(gapminder_2002)`$ equations for only two unknowns (slope and $y$-intercept). Thus, the coefficient matrix is $`r nrow(gapminder_2002)`$x$2$. As you will have guessed, to find the least squares regression line we will need to use orthogonal projections to find $m$ and $n$.
+
+**Challenge**: 
+
+To get a sense of how $b$, $p$ and $p-b$ translate in the context of a least squares problem try the shiny app.
+
+
+To solve for $m$ and $n$, we will first create the matrix $A$ and the vector $b$. Note that the first column of $A$ is the *gdpPercap*, and the vector $b$ is  the *lifeExp*:
+
+```{r}
+num_rows <- nrow(gapminder_sub)
+A <- matrix(
+  c(gapminder_sub$log10_gdpPercap, rep(1, num_rows)),
+  nrow = num_rows,
+  ncol = 2,
+  byrow = FALSE
+)
+head(A)
+
+
+b <- as.matrix(gapminder_sub$lifeExp)
+head(b)
+```
+
+
+We can solve the problem with the following equation (seen above):
+
+$$
+\widehat{x} = (A^t A)^{-1} A^tb
+$$
+
+```{r}
+AT_A <- t(A) %*% A
+AT_A_inv <- inv(AT_A)
+AT_A_inv <- AT_A_inv
+x_hat <- AT_A_inv %*% t(A) %*% b
+m <- x_hat[1, 1]
+n <- x_hat[2, 1]
+out <- str_c("The slope is ", round(m, 4), " and the y-intercept is ", round(n, 4))
+print(out)
+```
+
+Finally, we can recreate the plot. This time, you should manually provide $m$ and $n$ that you calculated by yourselves.
+
+```{r}
+gapminder_2002 %>% 
+  ggplot(aes(gdpPercap, lifeExp, color = continent, size = pop)) +
+    geom_point() +
+    geom_abline(slope = m, intercept = n, color = "black") +
+    scale_x_log10() +
+    labs(x = "Income", y = "Life Expectancy") +
+    theme_classic()
+```
+
+# Session Information
+
+```{r}
+sessionInfo()
+```
+

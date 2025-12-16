@@ -43,13 +43,14 @@ Evaluation will have two components:
 
 
 # Solved tests and exercises
-1. [Final test - Fall 2024]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2024.pdf %})
-2. [Final test - Fall 2023]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2023.pdf %})
-3. [Final test - Fall 2022]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2022.pdf %})
-4. [Final test - Fall 2021 - 1st round]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2021-1.pdf %})
-5. [Final test - Fall 2021 - 2nd round]({{ site.baseurl }}{% link solved-exercises/final-test-answers-2021-2.pdf %})
-6. [Mid term deliverable - Fall 2019]({{ site.baseurl }}{% link solved-exercises/mid-term-deliverable-2019.pdf %})
-7. [Matrix algebra meets differential calculus]({{ site.baseurl }}{% link solved-exercises/exercises-matrix-algebra-and-calculus-solved.pdf %})
+1. [Final test - Fall 2025]({{ site.baseurl }}{% link solved-exercises/final_tests/final-test-2025-answers.pdf %})
+2. [Final test - Fall 2024]({{ site.baseurl }}{% link solved-exercises/final_tests/final-test-answers-2024.pdf %})
+3. [Final test - Fall 2023]({{ site.baseurl }}{% link solved-exercises/final_tests/final-test-answers-2023.pdf %})
+4. [Final test - Fall 2022]({{ site.baseurl }}{% link solved-exercises/final_tests/final-test-answers-2022.pdf %})
+5. [Final test - Fall 2021 - 1st round]({{ site.baseurl }}{% link solved-exercises/final_tests/final-test-answers-2021-1.pdf %})
+6. [Final test - Fall 2021 - 2nd round]({{ site.baseurl }}{% link solved-exercises/final_tests/final-test-answers-2021-2.pdf %})
+7. [Mid term deliverable - Fall 2019]({{ site.baseurl }}{% link solved-exercises/mid-term-deliverable-2019.pdf %})
+8. [Matrix algebra meets differential calculus]({{ site.baseurl }}{% link solved-exercises/exercises-matrix-algebra-and-calculus-solved.pdf %})
 
 # Teachers
 

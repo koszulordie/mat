@@ -7,7 +7,7 @@
 Welcome to the supporting website for the **Elements of Mathematics** course of the [Master in
  Bioinformatics for Health Sciences](https://www.upf.edu/web/bioinformatics). 
  
-# Fall 2024-2025
+# Fall 2026-2027
 
 {% assign sorted = site.posts | sort: 'date' %}
 <ul>
